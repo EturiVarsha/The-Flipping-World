@@ -1,1 +1,1100 @@
-google-site-verification: googlee4b48da2a203f4f3.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipping the World · by Million Phrases Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0d1117;
+  color:#e8dcc8;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── CSS VARIABLES ── */
+:root{
+  --bg:#0d1117;
+  --bg2:#111820;
+  --cream:#e8dcc8;
+  --cream2:#c4b89a;
+  --cream3:#8a7a62;
+  --gold:#c9a84c;
+  --gold2:#a07830;
+  --teal:#3d8c7a;
+  --teal2:#2a6358;
+  --glass-bg:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-hover:rgba(255,255,255,0.07);
+  --nav-h:72px;
+  --tile-w:280px;
+  --tile-h:200px;
+}
+
+/* ── ANIMATED BACKGROUND ── */
+.bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.18;animation:drift 20s ease-in-out infinite alternate}
+.orb1{width:600px;height:600px;background:radial-gradient(#1a3a5c,#0d2035);top:-100px;left:-100px;animation-duration:22s}
+.orb2{width:500px;height:500px;background:radial-gradient(#1a3d2e,#0d2218);top:30%;right:-80px;animation-duration:28s;animation-delay:-8s}
+.orb3{width:700px;height:700px;background:radial-gradient(#2d1f0e,#1a1008);bottom:-100px;left:30%;animation-duration:25s;animation-delay:-4s}
+.orb4{width:400px;height:400px;background:radial-gradient(#1f1a0a,#2d2510);bottom:20%;right:20%;animation-duration:30s;animation-delay:-12s}
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(60px,80px) scale(1.08)}
+  66%{transform:translate(-40px,120px) scale(0.95)}
+  100%{transform:translate(80px,40px) scale(1.05)}
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:rgba(13,17,23,0.7);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--glass-border);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:900;
+  color:var(--cream);
+  display:flex;align-items:center;gap:0.6rem;
+  letter-spacing:-0.02em;
+}
+.nav-logo .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-right a{
+  font-size:0.7rem;color:var(--cream3);
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;transition:color 0.2s;
+}
+.nav-right a:hover{color:var(--gold)}
+.nav-mpl{
+  border:1px solid rgba(201,168,76,0.3)!important;
+  color:var(--gold)!important;
+  padding:0.3rem 0.9rem;border-radius:4px;
+  transition:background 0.2s!important;
+}
+.nav-mpl:hover{background:rgba(201,168,76,0.08)!important}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  padding:calc(var(--nav-h) + 3rem) 5% 3rem;
+  text-align:center;
+}
+.hero-eyebrow{
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+  display:flex;align-items:center;justify-content:center;gap:0.75rem;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:var(--gold);opacity:0.5}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:900;line-height:0.95;
+  letter-spacing:-0.03em;
+  color:var(--cream);
+  margin-bottom:1rem;
+}
+.hero-title span{color:var(--gold)}
+.hero-sub{
+  font-size:0.85rem;color:var(--cream3);
+  letter-spacing:0.05em;line-height:1.8;
+  max-width:480px;margin:0 auto 2rem;
+}
+.hero-stats{
+  display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:2rem;
+}
+.h-stat strong{
+  display:block;font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:900;color:var(--gold);line-height:1;
+}
+.h-stat span{font-size:0.6rem;color:var(--cream3);letter-spacing:0.12em;text-transform:uppercase}
+
+/* ── API KEY SETUP ── */
+.api-setup{
+  max-width:560px;margin:0 auto 2rem;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:1.25rem 1.5rem;
+  backdrop-filter:blur(12px);
+}
+.api-setup-title{
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.75rem;
+}
+.api-row{display:flex;gap:8px}
+.api-input{
+  flex:1;background:rgba(255,255,255,0.05);
+  border:1px solid var(--glass-border);border-radius:8px;
+  padding:0.6rem 1rem;color:var(--cream);font-size:0.8rem;
+  font-family:'Inter',sans-serif;outline:none;
+  transition:border-color 0.2s;
+}
+.api-input:focus{border-color:rgba(201,168,76,0.5)}
+.api-input::placeholder{color:var(--cream3)}
+.api-btn{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  border:none;border-radius:8px;
+  padding:0.6rem 1.2rem;color:#1a1008;
+  font-size:0.75rem;font-weight:600;letter-spacing:0.05em;
+  cursor:pointer;white-space:nowrap;transition:opacity 0.2s;
+}
+.api-btn:hover{opacity:0.85}
+.api-status{font-size:0.7rem;color:var(--cream3);margin-top:0.5rem}
+.api-status.ok{color:#4caf89}
+.api-status.err{color:#e05a4e}
+
+/* ── CONTROLS ── */
+.controls{
+  position:relative;z-index:1;
+  padding:0 5% 1.5rem;
+  display:flex;flex-wrap:wrap;gap:1rem;
+  align-items:center;justify-content:center;
+}
+.search-wrap{position:relative}
+.search-wrap input{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:10px;
+  padding:0.6rem 1rem 0.6rem 2.4rem;
+  color:var(--cream);font-size:0.82rem;
+  font-family:'Inter',sans-serif;
+  width:240px;outline:none;
+  transition:border-color 0.2s,background 0.2s;
+  backdrop-filter:blur(12px);
+}
+.search-wrap input:focus{border-color:rgba(201,168,76,0.4);background:rgba(255,255,255,0.07)}
+.search-wrap input::placeholder{color:var(--cream3)}
+.search-icon{
+  position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);
+  font-size:0.9rem;color:var(--cream3);pointer-events:none;
+}
+.cont-filters{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cf{
+  padding:5px 14px;border:1px solid var(--glass-border);
+  border-radius:20px;font-size:0.65rem;letter-spacing:0.08em;
+  text-transform:uppercase;cursor:pointer;
+  background:var(--glass-bg);color:var(--cream3);
+  transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.cf:hover{border-color:rgba(201,168,76,0.3);color:var(--cream)}
+.cf.active{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.4);color:var(--gold)}
+.result-count{font-size:0.68rem;color:var(--cream3);letter-spacing:0.08em}
+
+/* ── GRID ── */
+.feed{
+  position:relative;z-index:1;
+  padding:0 5% 5rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(var(--tile-w),1fr));
+  gap:20px;
+}
+
+/* ── CONTINENT HEADER ── */
+.cont-header{
+  grid-column:1/-1;
+  display:flex;align-items:center;gap:1rem;
+  padding:0.5rem 0;margin-top:1rem;
+}
+.cont-header h2{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;
+  letter-spacing:0.05em;
+}
+.cont-header::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,var(--glass-border),transparent);
+}
+
+/* ── TILE ── */
+.tile-wrap{
+  perspective:1200px;
+  height:var(--tile-h);
+  cursor:pointer;
+}
+.tile-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform 0.65s cubic-bezier(0.4,0.2,0.2,1);
+}
+
+/* flip states */
+.tile-wrap.flipped-news .tile-inner{transform:rotateY(180deg)}
+.tile-wrap.flipped-info .tile-inner{transform:rotateY(-180deg)}
+
+/* faces */
+.tile-front,.tile-news,.tile-info{
+  position:absolute;inset:0;
+  border-radius:18px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  overflow:hidden;
+}
+
+/* FRONT */
+.tile-front{
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.09);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.08);
+  display:flex;flex-direction:column;
+  padding:16px;
+  transition:background 0.2s,box-shadow 0.2s;
+}
+.tile-wrap:hover .tile-front{
+  background:rgba(255,255,255,0.07);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.tile-front-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:auto}
+.tile-flag{font-size:2.4rem;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4))}
+.tile-live{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.tile-temp{
+  font-size:0.75rem;font-weight:600;
+  color:var(--gold);letter-spacing:0.03em;
+}
+.tile-time{font-size:0.6rem;color:var(--cream3);letter-spacing:0.05em}
+.tile-country{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:900;
+  color:var(--cream);line-height:1.1;
+  letter-spacing:-0.01em;margin-bottom:3px;
+}
+.tile-capital{font-size:0.65rem;color:var(--cream3);letter-spacing:0.06em;text-transform:uppercase}
+.tile-hints{
+  display:flex;justify-content:space-between;
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.tile-hint-btn{
+  display:flex;align-items:center;gap:4px;
+  font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+  background:none;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;
+  transition:color 0.2s;padding:2px 4px;
+  border-radius:4px;
+}
+.tile-hint-btn:hover{color:var(--gold)}
+.tile-hint-btn.left{flex-direction:row}
+.tile-hint-btn.right{flex-direction:row-reverse}
+
+/* NEWS FACE */
+.tile-news{
+  transform:rotateY(180deg);
+  background:rgba(10,22,38,0.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(61,140,122,0.25);
+  box-shadow:0 8px 40px rgba(0,0,0,0.5),inset 0 1px 0 rgba(61,140,122,0.15);
+  padding:14px;
+  display:flex;flex-direction:column;
+}
+.face-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.face-label{
+  font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--teal);font-weight:600;
+}
+.face-close{
+  font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.2);cursor:pointer;
+  background:none;border:none;font-family:'Inter',sans-serif;
+  transition:color 0.2s;
+}
+.face-close:hover{color:var(--cream)}
+.news-loading{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+}
+.loading-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--teal);
+  animation:blink 1.2s ease-in-out infinite;
+}
+.loading-dot:nth-child(2){animation-delay:0.2s;background:var(--gold)}
+.loading-dot:nth-child(3){animation-delay:0.4s;background:var(--cream3)}
+.loading-dots{display:flex;gap:6px}
+.loading-text{font-size:0.62rem;color:var(--cream3);letter-spacing:0.08em}
+@keyframes blink{0%,100%{opacity:0.2;transform:scale(0.8)}50%{opacity:1;transform:scale(1)}}
+.news-items{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:7px}
+.news-item{
+  font-size:0.65rem;color:var(--cream2);line-height:1.5;
+  display:flex;gap:6px;align-items:flex-start;
+}
+.news-bullet{
+  color:var(--teal);font-size:0.7rem;flex-shrink:0;margin-top:1px;
+}
+.news-source{
+  font-size:0.55rem;color:var(--cream3);margin-top:3px;
+  letter-spacing:0.06em;
+}
+.news-error{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-size:0.65rem;color:var(--cream3);text-align:center;line-height:1.6;
+}
+
+/* INFO FACE */
+.tile-info{
+  transform:rotateY(-180deg);
+  background:rgba(20,15,8,0.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(201,168,76,0.2);
+  box-shadow:0 8px 40px rgba(0,0,0,0.5),inset 0 1px 0 rgba(201,168,76,0.1);
+  padding:14px;
+  display:flex;flex-direction:column;
+}
+.info-items{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.info-row{
+  display:flex;gap:8px;align-items:flex-start;
+  font-size:0.63rem;line-height:1.45;
+}
+.info-icon{font-size:0.75rem;flex-shrink:0;margin-top:1px}
+.info-label{color:var(--gold);font-weight:600;margin-right:3px;flex-shrink:0}
+.info-val{color:var(--cream2)}
+.info-loading{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;
+}
+
+/* ── ABOUT ── */
+.about{
+  position:relative;z-index:1;
+  border-top:1px solid var(--glass-border);
+  padding:3rem 5%;text-align:center;
+}
+.about p{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(0.9rem,2vw,1.1rem);
+  color:var(--cream3);line-height:1.6;max-width:520px;margin:0 auto;
+}
+.about a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3)}
+
+/* footer */
+footer{
+  position:relative;z-index:1;
+  padding:1.5rem 5%;text-align:center;
+  border-top:1px solid var(--glass-border);
+}
+footer p{font-size:0.62rem;color:var(--cream3);letter-spacing:0.1em;line-height:2.2}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  :root{--tile-w:160px;--tile-h:180px}
+  .feed{padding:0 4% 4rem;gap:12px}
+  nav{padding:0 4%}
+  .nav-right .hide-mob{display:none}
+  .hero{padding:calc(var(--nav-h)+2rem) 4% 2rem}
+  .tile-country{font-size:0.95rem}
+  .tile-flag{font-size:2rem}
+  .tile-front{padding:12px}
+  .tile-news,.tile-info{padding:12px}
+}
+@media(max-width:420px){
+  :root{--tile-w:140px;--tile-h:170px}
+  .search-wrap input{width:100%}
+  .controls{flex-direction:column;align-items:stretch;padding:0 4% 1.5rem}
+  .search-wrap{width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas" aria-hidden="true">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="dot"></span>
+    Flipping the World
+  </div>
+  <div class="nav-right">
+    <a href="#feed" class="hide-mob">explore</a>
+    <a href="#about" class="hide-mob">about</a>
+    <a href="https://eturivarsha.github.io/MPL/" target="_blank" class="nav-mpl">by MPL →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Million Phrases Labs</p>
+  <h1 class="hero-title">Flipping<br>the <span>World</span></h1>
+  <p class="hero-sub">Every country. Every story. One flip.<br>Flip right for live news · Flip left for country insights.</p>
+  <div class="hero-stats">
+    <div class="h-stat"><strong>195</strong><span>countries</span></div>
+    <div class="h-stat"><strong>Live</strong><span>news per flip</span></div>
+    <div class="h-stat"><strong>IST</strong><span>time on every tile</span></div>
+    <div class="h-stat"><strong>Free</strong><span>forever</span></div>
+  </div>
+
+  <!-- API KEY -->
+  <div class="api-setup">
+    <div class="api-setup-title">⚡ Paste your Gemini API Key to activate live news</div>
+    <div class="api-row">
+      <input class="api-input" id="apiKeyInput" type="password" placeholder="AIza... (from aistudio.google.com)">
+      <button class="api-btn" onclick="activateKey()">Activate</button>
+    </div>
+    <div class="api-status" id="apiStatus">Enter your free Gemini API key to load live news on each flip.</div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search countries…">
+  </div>
+  <div class="cont-filters" id="contFilters"></div>
+  <div class="result-count" id="resultCount"></div>
+</div>
+
+<!-- FEED -->
+<main class="feed" id="feed"></main>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="eyebrow" style="font-size:0.6rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.75rem">About</p>
+  <p>
+    <strong>Flipping the World</strong> is a global current affairs explorer by
+    <a href="https://eturivarsha.github.io/MPL/" target="_blank">Million Phrases Labs</a>.
+    Flip right for live news. Flip left for culture, climate and facts.
+    195 countries. Zero ads. Pure curiosity.
+  </p>
+</section>
+
+<footer>
+  <p>
+    <strong>Flipping the World</strong> · by <a href="https://eturivarsha.github.io/MPL/" target="_blank">Million Phrases Labs</a><br>
+    Every country. Every story. One flip. · Varsha Eturi
+  </p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   CONFIG
+═══════════════════════════════════════════ */
+let GEMINI_KEY = '';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+
+function activateKey(){
+  const val = document.getElementById('apiKeyInput').value.trim();
+  if(!val || !val.startsWith('AIza')){
+    setStatus('Please enter a valid Gemini API key (starts with AIza…)','err');
+    return;
+  }
+  GEMINI_KEY = val;
+  setStatus('✓ API key activated — flip any tile to load live news!','ok');
+}
+function setStatus(msg,cls){
+  const el = document.getElementById('apiStatus');
+  el.textContent = msg;
+  el.className = 'api-status '+(cls||'');
+}
+
+/* ═══════════════════════════════════════════
+   DATA — 195 COUNTRIES
+═══════════════════════════════════════════ */
+const COUNTRIES = [
+  // [continent, flag, name, capital, timezone, lat, lon]
+  ["Africa","🇩🇿","Algeria","Algiers","Africa/Algiers",36.74,3.06],
+  ["Africa","🇦🇴","Angola","Luanda","Africa/Luanda",-8.84,13.23],
+  ["Africa","🇧🇯","Benin","Porto-Novo","Africa/Porto-Novo",6.37,2.42],
+  ["Africa","🇧🇼","Botswana","Gaborone","Africa/Gaborone",-24.65,25.91],
+  ["Africa","🇧🇫","Burkina Faso","Ouagadougou","Africa/Ouagadougou",12.37,-1.53],
+  ["Africa","🇧🇮","Burundi","Gitega","Africa/Bujumbura",-3.43,29.93],
+  ["Africa","🇨🇲","Cameroon","Yaoundé","Africa/Douala",3.87,11.52],
+  ["Africa","🇨🇻","Cape Verde","Praia","Atlantic/Cape_Verde",14.93,-23.51],
+  ["Africa","🇨🇫","Central African Rep.","Bangui","Africa/Bangui",4.36,18.56],
+  ["Africa","🇹🇩","Chad","N'Djamena","Africa/Ndjamena",12.11,15.04],
+  ["Africa","🇰🇲","Comoros","Moroni","Indian/Comoro",-11.7,43.26],
+  ["Africa","🇨🇬","Congo","Brazzaville","Africa/Brazzaville",-4.27,15.28],
+  ["Africa","🇨🇩","DR Congo","Kinshasa","Africa/Kinshasa",-4.32,15.32],
+  ["Africa","🇩🇯","Djibouti","Djibouti City","Africa/Djibouti",11.59,43.14],
+  ["Africa","🇪🇬","Egypt","Cairo","Africa/Cairo",30.06,31.25],
+  ["Africa","🇬🇶","Equatorial Guinea","Malabo","Africa/Malabo",3.75,8.78],
+  ["Africa","🇪🇷","Eritrea","Asmara","Africa/Asmara",15.34,38.93],
+  ["Africa","🇸🇿","Eswatini","Mbabane","Africa/Mbabane",-26.32,31.14],
+  ["Africa","🇪🇹","Ethiopia","Addis Ababa","Africa/Addis_Ababa",9.03,38.74],
+  ["Africa","🇬🇦","Gabon","Libreville","Africa/Libreville",0.39,9.45],
+  ["Africa","🇬🇲","Gambia","Banjul","Africa/Banjul",13.45,-16.58],
+  ["Africa","🇬🇭","Ghana","Accra","Africa/Accra",5.56,-0.2],
+  ["Africa","🇬🇳","Guinea","Conakry","Africa/Conakry",9.54,-13.68],
+  ["Africa","🇬🇼","Guinea-Bissau","Bissau","Africa/Bissau",11.86,-15.6],
+  ["Africa","🇨🇮","Ivory Coast","Yamoussoukro","Africa/Abidjan",6.82,-5.28],
+  ["Africa","🇰🇪","Kenya","Nairobi","Africa/Nairobi",-1.29,36.82],
+  ["Africa","🇱🇸","Lesotho","Maseru","Africa/Maseru",-29.32,27.48],
+  ["Africa","🇱🇷","Liberia","Monrovia","Africa/Monrovia",6.3,-10.8],
+  ["Africa","🇱🇾","Libya","Tripoli","Africa/Tripoli",32.9,13.18],
+  ["Africa","🇲🇬","Madagascar","Antananarivo","Indian/Antananarivo",-18.91,47.54],
+  ["Africa","🇲🇼","Malawi","Lilongwe","Africa/Blantyre",-13.97,33.79],
+  ["Africa","🇲🇱","Mali","Bamako","Africa/Bamako",12.65,-8.0],
+  ["Africa","🇲🇷","Mauritania","Nouakchott","Africa/Nouakchott",18.08,-15.97],
+  ["Africa","🇲🇺","Mauritius","Port Louis","Indian/Mauritius",-20.16,57.5],
+  ["Africa","🇲🇦","Morocco","Rabat","Africa/Casablanca",34.02,-6.85],
+  ["Africa","🇲🇿","Mozambique","Maputo","Africa/Maputo",-25.97,32.59],
+  ["Africa","🇳🇦","Namibia","Windhoek","Africa/Windhoek",-22.56,17.08],
+  ["Africa","🇳🇪","Niger","Niamey","Africa/Niamey",13.51,2.12],
+  ["Africa","🇳🇬","Nigeria","Abuja","Africa/Lagos",9.07,7.4],
+  ["Africa","🇷🇼","Rwanda","Kigali","Africa/Kigali",-1.94,30.06],
+  ["Africa","🇸🇹","São Tomé & Príncipe","São Tomé","Africa/Sao_Tome",0.34,6.73],
+  ["Africa","🇸🇳","Senegal","Dakar","Africa/Dakar",14.72,-17.47],
+  ["Africa","🇸🇨","Seychelles","Victoria","Indian/Mahe",-4.62,55.45],
+  ["Africa","🇸🇱","Sierra Leone","Freetown","Africa/Freetown",8.49,-13.23],
+  ["Africa","🇸🇴","Somalia","Mogadishu","Africa/Mogadishu",2.05,45.34],
+  ["Africa","🇿🇦","South Africa","Pretoria","Africa/Johannesburg",-25.74,28.19],
+  ["Africa","🇸🇸","South Sudan","Juba","Africa/Juba",4.86,31.6],
+  ["Africa","🇸🇩","Sudan","Khartoum","Africa/Khartoum",15.55,32.53],
+  ["Africa","🇹🇿","Tanzania","Dodoma","Africa/Dar_es_Salaam",-6.18,35.74],
+  ["Africa","🇹🇬","Togo","Lomé","Africa/Lome",6.14,1.22],
+  ["Africa","🇹🇳","Tunisia","Tunis","Africa/Tunis",36.82,10.17],
+  ["Africa","🇺🇬","Uganda","Kampala","Africa/Kampala",0.32,32.58],
+  ["Africa","🇿🇲","Zambia","Lusaka","Africa/Lusaka",-15.42,28.28],
+  ["Africa","🇿🇼","Zimbabwe","Harare","Africa/Harare",-17.83,31.05],
+  ["Asia","🇦🇫","Afghanistan","Kabul","Asia/Kabul",34.52,69.18],
+  ["Asia","🇦🇲","Armenia","Yerevan","Asia/Yerevan",40.18,44.51],
+  ["Asia","🇦🇿","Azerbaijan","Baku","Asia/Baku",40.41,49.87],
+  ["Asia","🇧🇭","Bahrain","Manama","Asia/Bahrain",26.21,50.59],
+  ["Asia","🇧🇩","Bangladesh","Dhaka","Asia/Dhaka",23.72,90.41],
+  ["Asia","🇧🇹","Bhutan","Thimphu","Asia/Thimphu",27.47,89.64],
+  ["Asia","🇧🇳","Brunei","Bandar Seri Begawan","Asia/Brunei",4.94,114.95],
+  ["Asia","🇰🇭","Cambodia","Phnom Penh","Asia/Phnom_Penh",11.55,104.92],
+  ["Asia","🇨🇳","China","Beijing","Asia/Shanghai",39.91,116.39],
+  ["Asia","🇨🇾","Cyprus","Nicosia","Asia/Nicosia",35.17,33.37],
+  ["Asia","🇬🇪","Georgia","Tbilisi","Asia/Tbilisi",41.69,44.83],
+  ["Asia","🇮🇳","India","New Delhi","Asia/Kolkata",28.61,77.21],
+  ["Asia","🇮🇩","Indonesia","Jakarta","Asia/Jakarta",-6.21,106.85],
+  ["Asia","🇮🇷","Iran","Tehran","Asia/Tehran",35.69,51.42],
+  ["Asia","🇮🇶","Iraq","Baghdad","Asia/Baghdad",33.34,44.4],
+  ["Asia","🇮🇱","Israel","Jerusalem","Asia/Jerusalem",31.77,35.22],
+  ["Asia","🇯🇵","Japan","Tokyo","Asia/Tokyo",35.69,139.69],
+  ["Asia","🇯🇴","Jordan","Amman","Asia/Amman",31.95,35.93],
+  ["Asia","🇰🇿","Kazakhstan","Astana","Asia/Almaty",51.18,71.45],
+  ["Asia","🇰🇼","Kuwait","Kuwait City","Asia/Kuwait",29.37,47.98],
+  ["Asia","🇰🇬","Kyrgyzstan","Bishkek","Asia/Bishkek",42.87,74.59],
+  ["Asia","🇱🇦","Laos","Vientiane","Asia/Vientiane",17.97,102.6],
+  ["Asia","🇱🇧","Lebanon","Beirut","Asia/Beirut",33.89,35.5],
+  ["Asia","🇲🇾","Malaysia","Kuala Lumpur","Asia/Kuala_Lumpur",3.15,101.7],
+  ["Asia","🇲🇻","Maldives","Malé","Indian/Maldives",4.17,73.51],
+  ["Asia","🇲🇳","Mongolia","Ulaanbaatar","Asia/Ulaanbaatar",47.91,106.88],
+  ["Asia","🇲🇲","Myanmar","Naypyidaw","Asia/Rangoon",19.75,96.1],
+  ["Asia","🇳🇵","Nepal","Kathmandu","Asia/Kathmandu",27.72,85.32],
+  ["Asia","🇰🇵","North Korea","Pyongyang","Asia/Pyongyang",39.02,125.75],
+  ["Asia","🇴🇲","Oman","Muscat","Asia/Muscat",23.61,58.59],
+  ["Asia","🇵🇰","Pakistan","Islamabad","Asia/Karachi",33.72,73.06],
+  ["Asia","🇵🇸","Palestine","Ramallah","Asia/Gaza",31.9,35.2],
+  ["Asia","🇵🇭","Philippines","Manila","Asia/Manila",14.6,120.98],
+  ["Asia","🇶🇦","Qatar","Doha","Asia/Qatar",25.29,51.53],
+  ["Asia","🇸🇦","Saudi Arabia","Riyadh","Asia/Riyadh",24.69,46.72],
+  ["Asia","🇸🇬","Singapore","Singapore","Asia/Singapore",1.29,103.85],
+  ["Asia","🇰🇷","South Korea","Seoul","Asia/Seoul",37.57,126.98],
+  ["Asia","🇱🇰","Sri Lanka","Colombo","Asia/Colombo",6.93,79.86],
+  ["Asia","🇸🇾","Syria","Damascus","Asia/Damascus",33.51,36.29],
+  ["Asia","🇹🇼","Taiwan","Taipei","Asia/Taipei",25.05,121.53],
+  ["Asia","🇹🇯","Tajikistan","Dushanbe","Asia/Dushanbe",38.56,68.77],
+  ["Asia","🇹🇭","Thailand","Bangkok","Asia/Bangkok",13.75,100.52],
+  ["Asia","🇹🇱","Timor-Leste","Dili","Asia/Dili",-8.56,125.58],
+  ["Asia","🇹🇷","Turkey","Ankara","Europe/Istanbul",39.93,32.86],
+  ["Asia","🇹🇲","Turkmenistan","Ashgabat","Asia/Ashgabat",37.95,58.38],
+  ["Asia","🇦🇪","UAE","Abu Dhabi","Asia/Dubai",24.47,54.37],
+  ["Asia","🇺🇿","Uzbekistan","Tashkent","Asia/Tashkent",41.3,69.27],
+  ["Asia","🇻🇳","Vietnam","Hanoi","Asia/Ho_Chi_Minh",21.03,105.84],
+  ["Asia","🇾🇪","Yemen","Sanaa","Asia/Aden",15.35,44.21],
+  ["Europe","🇦🇱","Albania","Tirana","Europe/Tirane",41.33,19.82],
+  ["Europe","🇦🇩","Andorra","Andorra la Vella","Europe/Andorra",42.51,1.52],
+  ["Europe","🇦🇹","Austria","Vienna","Europe/Vienna",48.21,16.37],
+  ["Europe","🇧🇾","Belarus","Minsk","Europe/Minsk",53.9,27.57],
+  ["Europe","🇧🇪","Belgium","Brussels","Europe/Brussels",50.85,4.35],
+  ["Europe","🇧🇦","Bosnia & Herzegovina","Sarajevo","Europe/Sarajevo",43.85,18.38],
+  ["Europe","🇧🇬","Bulgaria","Sofia","Europe/Sofia",42.7,23.32],
+  ["Europe","🇭🇷","Croatia","Zagreb","Europe/Zagreb",45.81,15.98],
+  ["Europe","🇨🇿","Czech Republic","Prague","Europe/Prague",50.09,14.42],
+  ["Europe","🇩🇰","Denmark","Copenhagen","Europe/Copenhagen",55.68,12.57],
+  ["Europe","🇪🇪","Estonia","Tallinn","Europe/Tallinn",59.44,24.75],
+  ["Europe","🇫🇮","Finland","Helsinki","Europe/Helsinki",60.17,24.94],
+  ["Europe","🇫🇷","France","Paris","Europe/Paris",48.85,2.35],
+  ["Europe","🇩🇪","Germany","Berlin","Europe/Berlin",52.52,13.41],
+  ["Europe","🇬🇷","Greece","Athens","Europe/Athens",37.98,23.73],
+  ["Europe","🇭🇺","Hungary","Budapest","Europe/Budapest",47.5,19.04],
+  ["Europe","🇮🇸","Iceland","Reykjavik","Atlantic/Reykjavik",64.14,-21.9],
+  ["Europe","🇮🇪","Ireland","Dublin","Europe/Dublin",53.33,-6.25],
+  ["Europe","🇮🇹","Italy","Rome","Europe/Rome",41.9,12.48],
+  ["Europe","🇽🇰","Kosovo","Pristina","Europe/Belgrade",42.67,21.17],
+  ["Europe","🇱🇻","Latvia","Riga","Europe/Riga",56.95,24.11],
+  ["Europe","🇱🇮","Liechtenstein","Vaduz","Europe/Vaduz",47.14,9.52],
+  ["Europe","🇱🇹","Lithuania","Vilnius","Europe/Vilnius",54.69,25.28],
+  ["Europe","🇱🇺","Luxembourg","Luxembourg City","Europe/Luxembourg",49.61,6.13],
+  ["Europe","🇲🇹","Malta","Valletta","Europe/Malta",35.9,14.51],
+  ["Europe","🇲🇩","Moldova","Chișinău","Europe/Chisinau",47.0,28.86],
+  ["Europe","🇲🇨","Monaco","Monaco","Europe/Monaco",43.73,7.42],
+  ["Europe","🇲🇪","Montenegro","Podgorica","Europe/Podgorica",42.44,19.26],
+  ["Europe","🇳🇱","Netherlands","Amsterdam","Europe/Amsterdam",52.37,4.89],
+  ["Europe","🇲🇰","North Macedonia","Skopje","Europe/Skopje",42.0,21.43],
+  ["Europe","🇳🇴","Norway","Oslo","Europe/Oslo",59.91,10.75],
+  ["Europe","🇵🇱","Poland","Warsaw","Europe/Warsaw",52.23,21.01],
+  ["Europe","🇵🇹","Portugal","Lisbon","Europe/Lisbon",38.72,-9.14],
+  ["Europe","🇷🇴","Romania","Bucharest","Europe/Bucharest",44.43,26.1],
+  ["Europe","🇷🇺","Russia","Moscow","Europe/Moscow",55.75,37.62],
+  ["Europe","🇸🇲","San Marino","San Marino","Europe/San_Marino",43.94,12.46],
+  ["Europe","🇷🇸","Serbia","Belgrade","Europe/Belgrade",44.8,20.47],
+  ["Europe","🇸🇰","Slovakia","Bratislava","Europe/Bratislava",48.15,17.11],
+  ["Europe","🇸🇮","Slovenia","Ljubljana","Europe/Ljubljana",46.05,14.51],
+  ["Europe","🇪🇸","Spain","Madrid","Europe/Madrid",40.42,-3.7],
+  ["Europe","🇸🇪","Sweden","Stockholm","Europe/Stockholm",59.33,18.07],
+  ["Europe","🇨🇭","Switzerland","Bern","Europe/Zurich",46.95,7.44],
+  ["Europe","🇺🇦","Ukraine","Kyiv","Europe/Kiev",50.45,30.52],
+  ["Europe","🇬🇧","United Kingdom","London","Europe/London",51.51,-0.13],
+  ["Europe","🇻🇦","Vatican City","Vatican City","Europe/Rome",41.9,12.45],
+  ["North America","🇦🇬","Antigua & Barbuda","Saint John's","America/Antigua",17.12,-61.85],
+  ["North America","🇧🇸","Bahamas","Nassau","America/Nassau",25.05,-77.35],
+  ["North America","🇧🇧","Barbados","Bridgetown","America/Barbados",13.1,-59.62],
+  ["North America","🇧🇿","Belize","Belmopan","America/Belize",17.25,-88.77],
+  ["North America","🇨🇦","Canada","Ottawa","America/Toronto",45.42,-75.7],
+  ["North America","🇨🇷","Costa Rica","San José","America/Costa_Rica",9.93,-84.08],
+  ["North America","🇨🇺","Cuba","Havana","America/Havana",23.13,-82.38],
+  ["North America","🇩🇲","Dominica","Roseau","America/Dominica",15.3,-61.39],
+  ["North America","🇩🇴","Dominican Republic","Santo Domingo","America/Santo_Domingo",18.48,-69.9],
+  ["North America","🇸🇻","El Salvador","San Salvador","America/El_Salvador",13.69,-89.19],
+  ["North America","🇬🇩","Grenada","St. George's","America/Grenada",12.05,-61.75],
+  ["North America","🇬🇹","Guatemala","Guatemala City","America/Guatemala",14.64,-90.51],
+  ["North America","🇭🇹","Haiti","Port-au-Prince","America/Port-au-Prince",18.54,-72.34],
+  ["North America","🇭🇳","Honduras","Tegucigalpa","America/Tegucigalpa",14.09,-87.21],
+  ["North America","🇯🇲","Jamaica","Kingston","America/Jamaica",18.0,-76.79],
+  ["North America","🇲🇽","Mexico","Mexico City","America/Mexico_City",19.43,-99.13],
+  ["North America","🇳🇮","Nicaragua","Managua","America/Managua",12.13,-86.28],
+  ["North America","🇵🇦","Panama","Panama City","America/Panama",8.99,-79.52],
+  ["North America","🇰🇳","Saint Kitts & Nevis","Basseterre","America/St_Kitts",17.3,-62.72],
+  ["North America","🇱🇨","Saint Lucia","Castries","America/St_Lucia",14.02,-60.98],
+  ["North America","🇻🇨","Saint Vincent & Gren.","Kingstown","America/St_Vincent",13.16,-61.23],
+  ["North America","🇹🇹","Trinidad & Tobago","Port of Spain","America/Port_of_Spain",10.65,-61.52],
+  ["North America","🇺🇸","United States","Washington D.C.","America/New_York",38.89,-77.03],
+  ["Oceania","🇦🇺","Australia","Canberra","Australia/Sydney",-35.31,149.12],
+  ["Oceania","🇫🇯","Fiji","Suva","Pacific/Fiji",-18.14,178.44],
+  ["Oceania","🇰🇮","Kiribati","South Tarawa","Pacific/Tarawa",1.33,173.0],
+  ["Oceania","🇲🇭","Marshall Islands","Majuro","Pacific/Majuro",7.09,171.38],
+  ["Oceania","🇫🇲","Micronesia","Palikir","Pacific/Pohnpei",6.92,158.16],
+  ["Oceania","🇳🇷","Nauru","Yaren","Pacific/Nauru",-0.55,166.92],
+  ["Oceania","🇳🇿","New Zealand","Wellington","Pacific/Auckland",-41.29,174.78],
+  ["Oceania","🇵🇼","Palau","Ngerulmud","Pacific/Palau",7.5,134.62],
+  ["Oceania","🇵🇬","Papua New Guinea","Port Moresby","Pacific/Port_Moresby",-9.44,147.18],
+  ["Oceania","🇼🇸","Samoa","Apia","Pacific/Apia",-13.83,-171.77],
+  ["Oceania","🇸🇧","Solomon Islands","Honiara","Pacific/Guadalcanal",-9.43,160.05],
+  ["Oceania","🇹🇴","Tonga","Nukuʻalofa","Pacific/Tongatapu",-21.14,-175.22],
+  ["Oceania","🇹🇻","Tuvalu","Funafuti","Pacific/Funafuti",-8.52,179.2],
+  ["Oceania","🇻🇺","Vanuatu","Port Vila","Pacific/Efate",-17.73,168.32],
+  ["South America","🇦🇷","Argentina","Buenos Aires","America/Argentina/Buenos_Aires",-34.61,-58.38],
+  ["South America","🇧🇴","Bolivia","Sucre","America/La_Paz",-19.04,-65.26],
+  ["South America","🇧🇷","Brazil","Brasília","America/Sao_Paulo",-15.78,-47.93],
+  ["South America","🇨🇱","Chile","Santiago","America/Santiago",-33.46,-70.65],
+  ["South America","🇨🇴","Colombia","Bogotá","America/Bogota",4.71,-74.07],
+  ["South America","🇪🇨","Ecuador","Quito","America/Guayaquil",-0.23,-78.52],
+  ["South America","🇬🇾","Guyana","Georgetown","America/Guyana",6.8,-58.16],
+  ["South America","🇵🇾","Paraguay","Asunción","America/Asuncion",-25.28,-57.65],
+  ["South America","🇵🇪","Peru","Lima","America/Lima",-12.05,-77.05],
+  ["South America","🇸🇷","Suriname","Paramaribo","America/Paramaribo",5.87,-55.17],
+  ["South America","🇺🇾","Uruguay","Montevideo","America/Montevideo",-34.9,-56.19],
+  ["South America","🇻🇪","Venezuela","Caracas","America/Caracas",10.49,-66.88],
+];
+
+/* ═══════════════════════════════════════════
+   CONTINENT COLORS & CONFIG
+═══════════════════════════════════════════ */
+const CONT_COLOR = {
+  "Africa":"#c9a84c",
+  "Asia":"#3d8c7a",
+  "Europe":"#7b6fc9",
+  "North America":"#c2440a",
+  "Oceania":"#4a9bc2",
+  "South America":"#c96b7b"
+};
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let activeContinent = 'All';
+let searchTerm = '';
+const weatherCache = {};
+const newsCache = {};
+const infoCache = {};
+
+/* ═══════════════════════════════════════════
+   WEATHER — Open-Meteo (free, no key)
+═══════════════════════════════════════════ */
+async function getWeather(lat, lon, key){
+  if(weatherCache[key]) return weatherCache[key];
+  try{
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=celsius`);
+    const d = await r.json();
+    const t = Math.round(d.current_weather.temperature);
+    weatherCache[key] = t+'°C';
+    return weatherCache[key];
+  }catch(e){
+    weatherCache[key] = '--°C';
+    return weatherCache[key];
+  }
+}
+
+/* ═══════════════════════════════════════════
+   IST TIME
+═══════════════════════════════════════════ */
+function getIST(){
+  return new Date().toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:false});
+}
+
+/* ═══════════════════════════════════════════
+   GEMINI API CALLS
+═══════════════════════════════════════════ */
+async function fetchNews(country){
+  if(newsCache[country]) return newsCache[country];
+  if(!GEMINI_KEY) return null;
+  const prompt = `Give me exactly 3 current news headlines about ${country} from reliable sources like BBC, Reuters, AP, Al Jazeera, or major local outlets. Format as JSON array: [{"headline":"...","source":"BBC/Reuters/etc"},{"headline":"...","source":"..."},{"headline":"...","source":"..."}]. Only JSON, no other text.`;
+  try{
+    const r = await fetch(`${GEMINI_URL}?key=${GEMINI_KEY}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.3,maxOutputTokens:400}})
+    });
+    const d = await r.json();
+    if(d.error) throw new Error(d.error.message);
+    let text = d.candidates[0].content.parts[0].text.trim();
+    text = text.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(text);
+    newsCache[country] = parsed;
+    return parsed;
+  }catch(e){
+    return 'error';
+  }
+}
+
+async function fetchInfo(country){
+  if(infoCache[country]) return infoCache[country];
+  if(!GEMINI_KEY) return null;
+  const prompt = `Give me key facts about ${country} as JSON: {"languages":"main languages spoken","religion":"main religion(s)","climate":"climate in 8 words","funfact":"one fascinating cultural or historical fact in 15 words max","population":"population in millions e.g. 1.4B"}. Only JSON, no other text.`;
+  try{
+    const r = await fetch(`${GEMINI_URL}?key=${GEMINI_KEY}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.3,maxOutputTokens:300}})
+    });
+    const d = await r.json();
+    if(d.error) throw new Error(d.error.message);
+    let text = d.candidates[0].content.parts[0].text.trim();
+    text = text.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(text);
+    infoCache[country] = parsed;
+    return parsed;
+  }catch(e){
+    return 'error';
+  }
+}
+
+/* ═══════════════════════════════════════════
+   TILE BUILDER
+═══════════════════════════════════════════ */
+function buildTile(data){
+  const [continent, flag, name, capital, tz, lat, lon] = data;
+  const id = name.replace(/\s+/g,'_').replace(/[^a-zA-Z_]/g,'');
+  const col = CONT_COLOR[continent] || '#c9a84c';
+
+  const wrap = document.createElement('div');
+  wrap.className = 'tile-wrap';
+  wrap.dataset.continent = continent;
+  wrap.dataset.name = name.toLowerCase();
+  wrap.dataset.capital = capital.toLowerCase();
+  wrap.id = 'tile_'+id;
+
+  wrap.innerHTML = `
+    <div class="tile-inner">
+
+      <!-- FRONT -->
+      <div class="tile-front">
+        <div class="tile-front-top">
+          <div class="tile-flag">${flag}</div>
+          <div class="tile-live">
+            <div class="tile-temp" id="temp_${id}">…°C</div>
+            <div class="tile-time" id="time_${id}">IST --:--</div>
+          </div>
+        </div>
+        <div>
+          <div class="tile-country">${name}</div>
+          <div class="tile-capital">${capital}</div>
+        </div>
+        <div class="tile-hints">
+          <button class="tile-hint-btn left" onclick="flipInfo(event,'${id}')">◄ Info</button>
+          <button class="tile-hint-btn right" onclick="flipNews(event,'${id}')">News ►</button>
+        </div>
+      </div>
+
+      <!-- NEWS BACK -->
+      <div class="tile-news" id="news_${id}">
+        <div class="face-header">
+          <span class="face-label" style="color:${col}">📰 ${name} · News</span>
+          <button class="face-close" onclick="flipBack(event,'${id}')">✕ back</button>
+        </div>
+        <div class="news-loading" id="nload_${id}">
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+          <div class="loading-text">Fetching live news…</div>
+        </div>
+        <div class="news-items" id="nitems_${id}" style="display:none"></div>
+        <div class="news-error" id="nerr_${id}" style="display:none"></div>
+      </div>
+
+      <!-- INFO BACK -->
+      <div class="tile-info" id="info_${id}">
+        <div class="face-header">
+          <span class="face-label" style="color:${col}">🌍 ${name} · Facts</span>
+          <button class="face-close" onclick="flipBack(event,'${id}')">✕ back</button>
+        </div>
+        <div class="info-loading" id="iload_${id}">
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+          <div class="loading-text">Loading facts…</div>
+        </div>
+        <div class="info-items" id="iitems_${id}" style="display:none"></div>
+        <div class="news-error" id="ierr_${id}" style="display:none"></div>
+      </div>
+
+    </div>
+  `;
+
+  // load weather
+  getWeather(lat, lon, id).then(t=>{
+    const el = document.getElementById('temp_'+id);
+    if(el) el.textContent = t;
+  });
+
+  return wrap;
+}
+
+/* ═══════════════════════════════════════════
+   FLIP HANDLERS
+═══════════════════════════════════════════ */
+function flipNews(e, id){
+  e.stopPropagation();
+  const wrap = document.getElementById('tile_'+id);
+  if(!wrap) return;
+  wrap.classList.remove('flipped-info');
+  wrap.classList.add('flipped-news');
+  loadNews(id);
+}
+
+function flipInfo(e, id){
+  e.stopPropagation();
+  const wrap = document.getElementById('tile_'+id);
+  if(!wrap) return;
+  wrap.classList.remove('flipped-news');
+  wrap.classList.add('flipped-info');
+  loadInfo(id);
+}
+
+function flipBack(e, id){
+  e.stopPropagation();
+  const wrap = document.getElementById('tile_'+id);
+  if(!wrap) return;
+  wrap.classList.remove('flipped-news','flipped-info');
+}
+
+/* ═══════════════════════════════════════════
+   LOAD NEWS CONTENT
+═══════════════════════════════════════════ */
+async function loadNews(id){
+  const nload = document.getElementById('nload_'+id);
+  const nitems = document.getElementById('nitems_'+id);
+  const nerr = document.getElementById('nerr_'+id);
+  if(!nload) return;
+
+  // already loaded
+  if(nitems.style.display === 'flex') return;
+  if(nerr.style.display === 'flex') return;
+
+  // no key
+  if(!GEMINI_KEY){
+    nload.style.display = 'none';
+    nerr.style.display = 'flex';
+    nerr.innerHTML = '🔑 Add your free Gemini API key above to load live news for every country.';
+    return;
+  }
+
+  nload.style.display = 'flex';
+  nitems.style.display = 'none';
+  nerr.style.display = 'none';
+
+  // find country name from id
+  const country = COUNTRIES.find(c=>c[2].replace(/\s+/g,'_').replace(/[^a-zA-Z_]/g,'') === id)?.[2];
+  if(!country) return;
+
+  const result = await fetchNews(country);
+
+  nload.style.display = 'none';
+  if(result === 'error' || !result){
+    nerr.style.display = 'flex';
+    nerr.innerHTML = result === 'error'
+      ? '⚠️ Could not fetch news. Check your API key or try again.'
+      : '🔑 Add your Gemini API key to see live news.';
+    return;
+  }
+
+  nitems.innerHTML = result.map(item=>`
+    <div class="news-item">
+      <span class="news-bullet">▸</span>
+      <div>
+        <div>${item.headline}</div>
+        <div class="news-source">— ${item.source}</div>
+      </div>
+    </div>
+  `).join('');
+  nitems.style.display = 'flex';
+}
+
+/* ═══════════════════════════════════════════
+   LOAD INFO CONTENT
+═══════════════════════════════════════════ */
+async function loadInfo(id){
+  const iload = document.getElementById('iload_'+id);
+  const iitems = document.getElementById('iitems_'+id);
+  const ierr = document.getElementById('ierr_'+id);
+  if(!iload) return;
+
+  if(iitems.style.display === 'flex') return;
+  if(ierr.style.display === 'flex') return;
+
+  if(!GEMINI_KEY){
+    iload.style.display = 'none';
+    ierr.style.display = 'flex';
+    ierr.innerHTML = '🔑 Add your free Gemini API key above to load country facts.';
+    return;
+  }
+
+  iload.style.display = 'flex';
+  iitems.style.display = 'none';
+  ierr.style.display = 'none';
+
+  const country = COUNTRIES.find(c=>c[2].replace(/\s+/g,'_').replace(/[^a-zA-Z_]/g,'') === id)?.[2];
+  if(!country) return;
+
+  const result = await fetchInfo(country);
+
+  iload.style.display = 'none';
+  if(result === 'error' || !result){
+    ierr.style.display = 'flex';
+    ierr.innerHTML = result === 'error'
+      ? '⚠️ Could not load facts. Check your API key.'
+      : '🔑 Add your Gemini API key to see country facts.';
+    return;
+  }
+
+  iitems.innerHTML = `
+    <div class="info-row"><span class="info-icon">🗣️</span><div><span class="info-label">Languages</span><span class="info-val">${result.languages||'—'}</span></div></div>
+    <div class="info-row"><span class="info-icon">🕌</span><div><span class="info-label">Religion</span><span class="info-val">${result.religion||'—'}</span></div></div>
+    <div class="info-row"><span class="info-icon">🌤️</span><div><span class="info-label">Climate</span><span class="info-val">${result.climate||'—'}</span></div></div>
+    <div class="info-row"><span class="info-icon">👥</span><div><span class="info-label">Population</span><span class="info-val">${result.population||'—'}</span></div></div>
+    <div class="info-row"><span class="info-icon">✨</span><div><span class="info-label">Fun fact</span><span class="info-val">${result.funfact||'—'}</span></div></div>
+  `;
+  iitems.style.display = 'flex';
+}
+
+/* ═══════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════ */
+function render(){
+  const feed = document.getElementById('feed');
+  feed.innerHTML = '';
+  const q = searchTerm.toLowerCase();
+  let count = 0;
+  let lastCont = '';
+
+  COUNTRIES.forEach(data=>{
+    const [continent,,name,capital] = data;
+    if(activeContinent !== 'All' && continent !== activeContinent) return;
+    if(q && !name.toLowerCase().includes(q) && !capital.toLowerCase().includes(q) && !continent.toLowerCase().includes(q)) return;
+    count++;
+
+    if(continent !== lastCont){
+      const h = document.createElement('div');
+      h.className = 'cont-header';
+      h.innerHTML = `<h2 style="color:${CONT_COLOR[continent]}">${continent}</h2>`;
+      feed.appendChild(h);
+      lastCont = continent;
+    }
+
+    feed.appendChild(buildTile(data));
+  });
+
+  document.getElementById('resultCount').textContent = `${count} ${count===1?'country':'countries'}`;
+}
+
+/* ═══════════════════════════════════════════
+   FILTERS
+═══════════════════════════════════════════ */
+function buildFilters(){
+  const conts = ['All',...Object.keys(CONT_COLOR)];
+  const el = document.getElementById('contFilters');
+  el.innerHTML = conts.map(c=>`<button class="cf ${c==='All'?'active':''}" data-c="${c}">${c}</button>`).join('');
+  el.querySelectorAll('.cf').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeContinent = btn.dataset.c;
+      el.querySelectorAll('.cf').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
+}
+
+document.getElementById('searchInput').addEventListener('input', e=>{
+  searchTerm = e.target.value;
+  render();
+});
+
+/* ═══════════════════════════════════════════
+   IST CLOCK — update every minute
+═══════════════════════════════════════════ */
+function updateClocks(){
+  const ist = getIST();
+  document.querySelectorAll('[id^="time_"]').forEach(el=>{
+    el.textContent = 'IST '+ist;
+  });
+}
+updateClocks();
+setInterval(updateClocks, 30000);
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+buildFilters();
+render();
+</script>
+</body>
+</html>
