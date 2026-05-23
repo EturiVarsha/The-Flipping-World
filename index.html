@@ -10,617 +10,404 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#0c1118;color:#e8dcc8;min-height:100vh;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#0a0e14;color:#e8dcc8;min-height:100vh;overflow-x:hidden}
+:root{--cream:#e8dcc8;--cream2:#c4b89a;--cream3:#7a6a52;--gold:#c9a84c;--nav-h:68px;--glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.08)}
 
-:root{
-  --bg:#0c1118;--cream:#e8dcc8;--cream2:#c4b89a;--cream3:#7a6a52;
-  --gold:#c9a84c;--gold2:#a07830;--nav-h:68px;
-  --glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.07);
-}
-
-/* BLOBS */
 .bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(130px);opacity:0.15;animation:drift 24s ease-in-out infinite alternate}
-.orb1{width:700px;height:700px;background:radial-gradient(#1a3a5c,#0a1e30);top:-200px;left:-200px;animation-duration:26s}
-.orb2{width:600px;height:600px;background:radial-gradient(#1a3d2e,#0a2218);top:25%;right:-150px;animation-duration:32s;animation-delay:-10s}
-.orb3{width:800px;height:800px;background:radial-gradient(#2d1f0a,#181008);bottom:-200px;left:25%;animation-duration:28s;animation-delay:-5s}
-.orb4{width:500px;height:500px;background:radial-gradient(#251a08,#1a1205);bottom:15%;right:10%;animation-duration:22s;animation-delay:-15s}
-@keyframes drift{0%{transform:translate(0,0) scale(1)}40%{transform:translate(80px,100px) scale(1.1)}100%{transform:translate(40px,60px) scale(0.95)}}
+.orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:0.12;animation:drift 26s ease-in-out infinite alternate}
+.orb1{width:800px;height:800px;background:radial-gradient(#1a3a5c,#071220);top:-250px;left:-250px;animation-duration:30s}
+.orb2{width:600px;height:600px;background:radial-gradient(#1a3020,#071008);top:30%;right:-150px;animation-duration:35s;animation-delay:-12s}
+.orb3{width:900px;height:900px;background:radial-gradient(#2d1800,#100800);bottom:-250px;left:20%;animation-duration:28s;animation-delay:-6s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,80px) scale(1.08)}100%{transform:translate(30px,50px) scale(0.96)}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(12,17,24,0.75);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(255,255,255,0.06)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--cream);display:flex;align-items:center;gap:0.5rem;letter-spacing:-0.02em;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,14,20,0.85);backdrop-filter:blur(28px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--cream);display:flex;align-items:center;gap:0.5rem;text-decoration:none}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.6)}}
 .nav-right{display:flex;align-items:center;gap:1.2rem}
-.nav-right a{font-size:0.68rem;color:var(--cream3);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:color 0.2s}
+.nav-right a{font-size:0.65rem;color:var(--cream3);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:color 0.2s}
 .nav-right a:hover{color:var(--gold)}
 .nav-mpl{border:1px solid rgba(201,168,76,0.3)!important;color:var(--gold)!important;padding:0.28rem 0.85rem;border-radius:4px}
-.nav-mpl:hover{background:rgba(201,168,76,0.08)!important}
-.nav-key-btn{font-size:0.65rem;color:var(--cream3);letter-spacing:0.08em;text-transform:uppercase;background:var(--glass);border:1px solid var(--glass-b);border-radius:6px;padding:0.28rem 0.75rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
-.nav-key-btn:hover{color:var(--gold);border-color:rgba(201,168,76,0.3)}
-.nav-key-btn.active{color:#4caf89;border-color:rgba(76,175,137,0.3)}
 
-/* HERO */
-.hero{position:relative;z-index:1;min-height:52vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:calc(var(--nav-h) + 3rem) 5% 3rem;text-align:center}
-.hero-eyebrow{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:var(--gold);opacity:0.45}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:900;line-height:0.92;letter-spacing:-0.035em;color:var(--cream);margin-bottom:1.25rem}
+.hero{position:relative;z-index:1;min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:calc(var(--nav-h) + 4rem) 5% 3rem;text-align:center}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:var(--gold);opacity:0.4}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,9vw,6.5rem);font-weight:900;line-height:0.9;letter-spacing:-0.04em;color:var(--cream);margin-bottom:1.25rem}
 .hero-title em{color:var(--gold);font-style:italic}
-.hero-sub{font-size:0.82rem;color:var(--cream3);letter-spacing:0.04em;line-height:1.85;max-width:440px;margin:0 auto 2rem}
-.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:2.5rem}
-.pill{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;border:1px solid var(--glass-b);background:var(--glass);color:var(--cream3)}
-.pill b{color:var(--gold)}
-.hero-scroll{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream3);display:flex;align-items:center;gap:0.5rem;cursor:pointer;transition:color 0.2s;background:none;border:none;font-family:'Inter',sans-serif}
+.hero-sub{font-size:0.8rem;color:var(--cream3);letter-spacing:0.04em;line-height:1.9;max-width:420px;margin:0 auto 1.5rem}
+.updated-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream3);background:var(--glass);border:1px solid var(--glass-b);border-radius:20px;padding:6px 16px;margin-bottom:1.5rem}
+.updated-badge b{color:var(--gold)}
+.hero-scroll{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream3);display:flex;align-items:center;gap:0.5rem;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;transition:color 0.2s}
 .hero-scroll:hover{color:var(--gold)}
-.scroll-arrow{animation:bob 2s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.scroll-arr{animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-/* CONTROLS */
 .controls{position:relative;z-index:1;padding:2rem 5% 1.5rem;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,0.04)}
 .search-wrap{position:relative}
-.search-icon{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);font-size:0.85rem;color:var(--cream3);pointer-events:none}
-.search-wrap input{background:var(--glass);border:1px solid var(--glass-b);border-radius:10px;padding:0.65rem 1rem 0.65rem 2.5rem;color:var(--cream);font-size:0.8rem;font-family:'Inter',sans-serif;width:250px;outline:none;transition:all 0.2s;backdrop-filter:blur(12px)}
+.s-icon{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);font-size:0.85rem;color:var(--cream3);pointer-events:none}
+.search-wrap input{background:var(--glass);border:1px solid var(--glass-b);border-radius:10px;padding:0.65rem 1rem 0.65rem 2.5rem;color:var(--cream);font-size:0.8rem;font-family:'Inter',sans-serif;width:260px;outline:none;transition:all 0.2s;backdrop-filter:blur(12px)}
 .search-wrap input:focus{border-color:rgba(201,168,76,0.35);background:rgba(255,255,255,0.06)}
 .search-wrap input::placeholder{color:var(--cream3)}
 .cont-filters{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.cf{padding:5px 13px;border:1px solid var(--glass-b);border-radius:20px;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:var(--glass);color:var(--cream3);transition:all 0.2s;font-family:'Inter',sans-serif}
+.cf{padding:5px 14px;border:1px solid var(--glass-b);border-radius:20px;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:var(--glass);color:var(--cream3);transition:all 0.2s;font-family:'Inter',sans-serif}
 .cf:hover{color:var(--cream)}
 .cf.active{border-color:rgba(201,168,76,0.4);color:var(--gold);background:rgba(201,168,76,0.08)}
-.result-count{font-size:0.65rem;color:var(--cream3);letter-spacing:0.08em;width:100%;text-align:center}
+.result-count{font-size:0.62rem;color:var(--cream3);letter-spacing:0.08em;width:100%;text-align:center;margin-top:4px}
 
-/* GRID */
-.feed{position:relative;z-index:1;padding:0 4% 6rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-.cont-header{grid-column:1/-1;display:flex;align-items:center;gap:1rem;padding:0.5rem 0;margin-top:0.5rem}
+.feed{position:relative;z-index:1;padding:0 4% 6rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px}
+.cont-header{grid-column:1/-1;display:flex;align-items:center;gap:1rem;padding:0.5rem 0;margin-top:0.75rem}
 .cont-header h2{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;letter-spacing:0.04em}
-.cont-header::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+.cont-header::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.07),transparent)}
 
 /* TILE */
-.tile-wrap{perspective:1400px;height:220px;cursor:pointer}
-.tile-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(0.35,0.15,0.15,1)}
-.tile-wrap.flipped-news .tile-inner{transform:rotateY(180deg)}
-.tile-wrap.flipped-info .tile-inner{transform:rotateY(-180deg)}
-.tile-front,.tile-news,.tile-info{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.tile-wrap{perspective:1400px;height:520px;cursor:pointer}
+.tile-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.75s cubic-bezier(0.35,0.1,0.15,1)}
+.tile-wrap.flipped .tile-inner{transform:rotateY(180deg)}
+.tile-front,.tile-back{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 
-/* FRONT */
-.tile-front{
-  background:linear-gradient(145deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02));
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,0.08);
-  box-shadow:0 4px 24px rgba(0,0,0,0.25),0 1px 0 rgba(255,255,255,0.06) inset;
-  padding:18px;display:flex;flex-direction:column;
-  transition:transform 0.2s,box-shadow 0.2s,background 0.2s;
-}
-.tile-wrap:hover .tile-front{
-  background:linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
-  box-shadow:0 8px 36px rgba(0,0,0,0.35),0 1px 0 rgba(255,255,255,0.1) inset;
-  transform:translateY(-2px);
-}
-.tile-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:auto}
-.tile-flag{font-size:2.6rem;line-height:1;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.5))}
-.tile-live{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.tile-temp{font-size:0.8rem;font-weight:600;color:var(--gold);letter-spacing:0.02em}
-.tile-time{font-size:0.58rem;color:var(--cream3);letter-spacing:0.06em}
-.tile-country{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:var(--cream);line-height:1.1;letter-spacing:-0.01em;margin-bottom:4px}
-.tile-capital{font-size:0.62rem;color:var(--cream3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
-.tile-actions{display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)}
-.tile-btn{display:flex;align-items:center;gap:5px;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.22);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;padding:3px 6px;border-radius:5px;transition:all 0.2s}
-.tile-btn:hover{color:var(--gold);background:rgba(201,168,76,0.08)}
-.tile-btn .arr{font-size:0.7rem}
+/* LANDSCAPE ART — CSS only, no API */
+.bg-africa{background:linear-gradient(175deg,#0a0500 0%,#1a0800 15%,#3d1200 30%,#6b2500 45%,#9c4010 60%,#c46830 75%,#e89860 88%,#f0b878 100%)}
+.bg-asia{background:linear-gradient(175deg,#000814 0%,#001222 15%,#002448 30%,#0a3870 45%,#185898 60%,#2878be 75%,#5098d8 88%,#78b8e8 100%)}
+.bg-europe{background:linear-gradient(175deg,#020a06 0%,#041208 15%,#0a2418 30%,#143820 45%,#1e5030 60%,#2d6e40 75%,#4a9258 88%,#6ab874 100%)}
+.bg-namerica{background:linear-gradient(175deg,#080500 0%,#140a00 15%,#2a1600 30%,#503000 45%,#886000 60%,#c09000 75%,#dab800 88%,#ecd040 100%)}
+.bg-oceania{background:linear-gradient(175deg,#000a16 0%,#001228 15%,#002450 30%,#004490 45%,#0064c0 60%,#1080e0 75%,#40a8f8 88%,#78c8ff 100%)}
+.bg-samerica{background:linear-gradient(175deg,#000a00 0%,#001200 15%,#002400 30%,#004400 45%,#006a00 60%,#009800 75%,#20c828 88%,#54e050 100%)}
 
-/* BACK FACES */
-.tile-news{transform:rotateY(180deg);background:linear-gradient(145deg,rgba(8,20,36,0.97),rgba(12,26,44,0.95));border:1px solid rgba(61,140,122,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6);padding:16px;display:flex;flex-direction:column}
-.tile-info{transform:rotateY(-180deg);background:linear-gradient(145deg,rgba(20,14,4,0.97),rgba(26,18,6,0.95));border:1px solid rgba(201,168,76,0.18);box-shadow:0 8px 40px rgba(0,0,0,0.6);padding:16px;display:flex;flex-direction:column}
+/* landscape details */
+.landscape-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 38%,rgba(0,0,0,0.55) 68%,rgba(0,0,0,0.88) 100%)}
+.landscape-overlay::before{content:'';position:absolute;inset:0;background-image:
+  radial-gradient(1px 1px at 18% 12%,rgba(255,255,255,0.35) 0%,transparent 100%),
+  radial-gradient(1px 1px at 55% 7%,rgba(255,255,255,0.25) 0%,transparent 100%),
+  radial-gradient(1.5px 1.5px at 78% 16%,rgba(255,255,255,0.3) 0%,transparent 100%),
+  radial-gradient(1px 1px at 38% 4%,rgba(255,255,255,0.2) 0%,transparent 100%),
+  radial-gradient(1px 1px at 65% 22%,rgba(255,255,255,0.18) 0%,transparent 100%),
+  radial-gradient(2px 2px at 88% 9%,rgba(255,255,255,0.15) 0%,transparent 100%),
+  radial-gradient(1px 1px at 10% 28%,rgba(255,255,255,0.22) 0%,transparent 100%),
+  radial-gradient(1.5px 1.5px at 42% 18%,rgba(255,255,255,0.12) 0%,transparent 100%)}
+.landscape-overlay::after{content:'';position:absolute;left:0;right:0;top:52%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)}
 
-.face-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
-.face-lbl{font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600}
-.face-back{font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;transition:color 0.2s;padding:2px 4px}
-.face-back:hover{color:var(--cream2)}
+/* moon */
+.tile-front::before{content:'';position:absolute;top:14%;right:18%;width:22px;height:22px;border-radius:50%;box-shadow:0 0 16px 4px rgba(255,248,200,0.15);background:radial-gradient(circle at 38% 38%,#fff9e0,#e8d88a 60%,#c8b040);z-index:3;opacity:0.7}
 
-/* LOADING */
-.f-loading{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-.ldots{display:flex;gap:6px}
-.ldot{width:5px;height:5px;border-radius:50%;animation:blink 1.3s ease-in-out infinite}
-.ldot:nth-child(1){background:#3d8c7a}
-.ldot:nth-child(2){background:var(--gold);animation-delay:0.2s}
-.ldot:nth-child(3){background:var(--cream3);animation-delay:0.4s}
-@keyframes blink{0%,100%{opacity:0.15;transform:scale(0.7)}50%{opacity:1;transform:scale(1)}}
-.ltxt{font-size:0.6rem;color:var(--cream3);letter-spacing:0.08em}
+/* hills silhouette */
+.tile-front::after{content:'';position:absolute;left:0;right:0;bottom:38%;height:60px;z-index:2;opacity:0.55;background:
+  radial-gradient(ellipse 60% 100% at 20% 100%,currentColor 0%,transparent 100%),
+  radial-gradient(ellipse 80% 100% at 70% 100%,currentColor 0%,transparent 100%)}
+.bg-africa::after{color:#3d1000}
+.bg-asia::after{color:#001838}
+.bg-europe::after{color:#0a2010}
+.bg-namerica::after{color:#2a1400}
+.bg-oceania::after{color:#002050}
+.bg-samerica::after{color:#002000}
 
-/* NEWS ITEMS */
-.n-items{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:8px}
-.n-item{font-size:0.64rem;color:#c4b89a;line-height:1.55;display:flex;gap:7px;align-items:flex-start}
-.n-dot{color:#3d8c7a;flex-shrink:0;margin-top:2px;font-size:0.65rem}
-.n-src{font-size:0.52rem;color:var(--cream3);margin-top:2px;letter-spacing:0.05em}
+.tile-front-content{position:absolute;inset:0;display:flex;flex-direction:column;padding:20px;z-index:10}
+.tile-top{display:flex;justify-content:space-between;align-items:flex-start}
+.tile-flag{font-size:3.2rem;line-height:1;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.7))}
+.tile-live{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.tile-temp{font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.92);letter-spacing:0.03em;text-shadow:0 1px 6px rgba(0,0,0,0.9)}
+.tile-time{font-size:0.58rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-shadow:0 1px 4px rgba(0,0,0,0.9)}
+.tile-bottom{margin-top:auto}
+.tile-tag{display:inline-block;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;padding:3px 10px;border-radius:10px;margin-bottom:10px;backdrop-filter:blur(8px)}
+.tile-country{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.02em;text-shadow:0 2px 14px rgba(0,0,0,0.9);margin-bottom:5px}
+.tile-capital{font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,0.9);margin-bottom:20px}
+.tile-flip-hint{display:flex;justify-content:flex-end}
+.flip-btn{display:flex;align-items:center;gap:5px;font-size:0.57rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:6px 14px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;backdrop-filter:blur(8px)}
+.flip-btn:hover{color:var(--gold);border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.08)}
 
-/* INFO ITEMS */
-.i-items{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:5px}
-.i-row{display:flex;gap:7px;align-items:flex-start;font-size:0.62rem;line-height:1.45}
-.i-ico{font-size:0.75rem;flex-shrink:0;margin-top:1px}
-.i-lbl{color:var(--gold);font-weight:600;margin-right:3px;flex-shrink:0;font-size:0.6rem}
-.i-val{color:#c4b89a}
+/* BACK */
+.tile-back{transform:rotateY(180deg);background:#070d14;border:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:22px}
+.back-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.back-country{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--cream);letter-spacing:-0.01em;line-height:1.1;margin-bottom:4px}
+.back-label{font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600}
+.back-close{font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;transition:color 0.2s;padding:3px 6px;flex-shrink:0;margin-top:2px}
+.back-close:hover{color:var(--cream2)}
+.news-list{flex:1;display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.news-item{border-left:2px solid rgba(255,255,255,0.09);padding-left:14px}
+.news-headline{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:var(--cream);line-height:1.4;letter-spacing:-0.01em;margin-bottom:5px}
+.news-stat{font-size:0.66rem;color:var(--cream3);line-height:1.65;letter-spacing:0.01em}
+.news-source{font-size:0.52rem;color:rgba(255,255,255,0.22);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+.no-news{flex:1;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--cream3);text-align:center;line-height:1.7;font-family:'Playfair Display',serif;font-style:italic}
+.back-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center}
+.back-updated{font-size:0.52rem;color:rgba(255,255,255,0.18);letter-spacing:0.08em;text-transform:uppercase}
+.back-flag{font-size:1.2rem;opacity:0.35}
 
-/* ERROR / NO KEY */
-.f-msg{flex:1;display:flex;align-items:center;justify-content:center;font-size:0.62rem;color:var(--cream3);text-align:center;line-height:1.7;padding:0 4px}
-
-/* KEY MODAL */
-.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.3s}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:linear-gradient(145deg,#131c26,#0e1620);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2rem;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,0.6)}
-.modal-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--cream);margin-bottom:0.5rem}
-.modal-sub{font-size:0.75rem;color:var(--cream3);line-height:1.7;margin-bottom:1.5rem}
-.modal-sub a{color:var(--gold);text-decoration:none}
-.modal-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.75rem 1rem;color:var(--cream);font-size:0.82rem;font-family:'Inter',sans-serif;outline:none;margin-bottom:10px;transition:border-color 0.2s}
-.modal-input:focus{border-color:rgba(201,168,76,0.45)}
-.modal-input::placeholder{color:var(--cream3)}
-.modal-row{display:flex;gap:8px}
-.modal-btn{flex:1;background:linear-gradient(135deg,var(--gold2),var(--gold));border:none;border-radius:10px;padding:0.75rem;color:#1a1008;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s}
-.modal-btn:hover{opacity:0.88}
-.modal-skip{flex:0 0 auto;background:var(--glass);border:1px solid var(--glass-b);border-radius:10px;padding:0.75rem 1rem;color:var(--cream3);font-size:0.75rem;cursor:pointer;font-family:'Inter',sans-serif;transition:color 0.2s}
-.modal-skip:hover{color:var(--cream)}
-.modal-status{font-size:0.68rem;margin-top:0.5rem;min-height:1rem}
-.modal-status.ok{color:#4caf89}
-.modal-status.err{color:#e05a4e}
-.modal-close{float:right;background:none;border:none;color:var(--cream3);cursor:pointer;font-size:1.1rem;line-height:1;margin-top:-0.5rem;margin-right:-0.5rem;padding:0.25rem;transition:color 0.2s}
-.modal-close:hover{color:var(--cream)}
-
-/* ABOUT + FOOTER */
 .about{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.05);padding:3rem 5%;text-align:center}
-.about p{font-family:'Playfair Display',serif;font-size:clamp(0.9rem,2vw,1.1rem);color:var(--cream3);line-height:1.7;max-width:500px;margin:0 auto}
+.about p{font-family:'Playfair Display',serif;font-size:clamp(0.9rem,2vw,1.05rem);color:var(--cream3);line-height:1.8;max-width:500px;margin:0 auto}
 .about a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3)}
 footer{position:relative;z-index:1;padding:1.5rem 5%;text-align:center;border-top:1px solid rgba(255,255,255,0.04)}
-footer p{font-size:0.6rem;color:var(--cream3);letter-spacing:0.1em;line-height:2.4}
+footer p{font-size:0.58rem;color:var(--cream3);letter-spacing:0.1em;line-height:2.6}
 footer a{color:var(--gold);text-decoration:none}
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .feed{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:0 3% 5rem}
-  .tile-wrap{height:190px}
-  .tile-flag{font-size:2.1rem}
-  .tile-front,.tile-news,.tile-info{padding:13px;border-radius:16px}
-  .tile-inner{border-radius:16px}
-  .tile-country{font-size:0.98rem}
-  .tile-capital{font-size:0.58rem;margin-bottom:8px}
-  .hero-title{font-size:clamp(2.5rem,10vw,4rem)}
+@media(max-width:900px){.feed{grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}}
+@media(max-width:640px){
+  .feed{grid-template-columns:repeat(2,1fr);gap:12px;padding:0 3% 5rem}
+  .tile-wrap{height:440px}
+  .tile-flag{font-size:2.6rem}
+  .tile-front-content{padding:14px}
+  .tile-back{padding:16px}
+  .tile-country{font-size:1.3rem}
+  .back-country{font-size:1.05rem}
+  .news-headline{font-size:0.82rem}
+  .news-stat{font-size:0.62rem}
+  .hero-title{font-size:clamp(2.8rem,12vw,4rem)}
   nav{padding:0 4%}
-  .nav-key-btn span{display:none}
   .search-wrap input{width:100%}
   .controls{flex-direction:column;align-items:stretch;padding:1.5rem 4%}
   .search-wrap{width:100%}
 }
 @media(max-width:400px){
-  .feed{grid-template-columns:repeat(2,1fr)}
-  .tile-wrap{height:175px}
+  .feed{grid-template-columns:1fr}
+  .tile-wrap{height:500px}
 }
 </style>
 </head>
 <body>
 
 <div class="bg-canvas" aria-hidden="true">
-  <div class="orb orb1"></div><div class="orb orb2"></div>
-  <div class="orb orb3"></div><div class="orb orb4"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 </div>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <span class="dot"></span>Flipping the World
-  </a>
+  <a class="nav-logo" href="#"><span class="dot"></span>Flipping the World</a>
   <div class="nav-right">
-    <a href="#feed" class="hide-mob">explore</a>
-    <a href="#about" class="hide-mob">about</a>
-    <button class="nav-key-btn" id="navKeyBtn" onclick="openModal()">⚡ <span>API Key</span></button>
+    <a href="#feed">explore</a>
+    <a href="#about">about</a>
     <a href="https://eturivarsha.github.io/MPL/" target="_blank" class="nav-mpl">by MPL →</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow">Million Phrases Labs</p>
   <h1 class="hero-title">Flipping<br>the <em>World</em></h1>
-  <p class="hero-sub">195 countries. Live news. Real facts.<br>Flip right for headlines · Flip left for culture & climate</p>
-  <div class="hero-pills">
-    <span class="pill"><b>195</b> countries</span>
-    <span class="pill"><b>Live</b> weather per tile</span>
-    <span class="pill"><b>IST</b> time always</span>
-    <span class="pill"><b>Dual</b> flip mechanic</span>
-    <span class="pill"><b>Free</b> forever</span>
-  </div>
+  <p class="hero-sub">What people need. What people endure.<br>195 countries. One flip at a time.</p>
+  <div class="updated-badge">News updated <b>23 May 2026</b> — curated by MPL</div>
   <button class="hero-scroll" onclick="document.getElementById('feed').scrollIntoView({behavior:'smooth'})">
-    Start exploring <span class="scroll-arrow">↓</span>
+    Start reading <span class="scroll-arr">↓</span>
   </button>
 </section>
 
-<!-- CONTROLS -->
 <div class="controls">
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="s-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="Search countries or capitals…">
   </div>
   <div class="cont-filters" id="contFilters"></div>
   <div class="result-count" id="resultCount"></div>
 </div>
 
-<!-- FEED -->
 <main class="feed" id="feed"></main>
 
-<!-- ABOUT -->
 <section class="about" id="about">
-  <p class="eyebrow" style="font-size:0.58rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem">About</p>
-  <p><strong>Flipping the World</strong> is a global current affairs explorer by <a href="https://eturivarsha.github.io/MPL/" target="_blank">Million Phrases Labs</a>. Every country. Every story. One flip. No ads, no noise — just curiosity.</p>
+  <p class="eyebrow" style="font-size:0.56rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem">About</p>
+  <p><strong>Flipping the World</strong> is a global news explorer by <a href="https://eturivarsha.github.io/MPL/" target="_blank">Million Phrases Labs</a>. Every tile is a country. Every flip is a story. News curated manually — what people need, not what governments announce.</p>
 </section>
+
 <footer>
   <p><strong>Flipping the World</strong> · by <a href="https://eturivarsha.github.io/MPL/" target="_blank">Million Phrases Labs</a><br>
-  Every country. Every story. One flip. · Varsha Eturi</p>
+  What people need. What people endure. · Updated 23 May 2026</p>
 </footer>
 
-<!-- KEY MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-title">Activate Live News</div>
-    <div class="modal-sub">
-      Get your free Gemini API key from <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> — sign in with Google, click <strong>Get API Key</strong>. Free, no credit card needed.
-    </div>
-    <input class="modal-input" id="modalKeyInput" type="password" placeholder="AIza… paste your Gemini key here">
-    <div class="modal-row">
-      <button class="modal-btn" onclick="activateKey()">Activate ⚡</button>
-      <button class="modal-skip" onclick="closeModal()">Later</button>
-    </div>
-    <div class="modal-status" id="modalStatus"></div>
-  </div>
-</div>
-
 <script>
-/* ── CONFIG ── */
-let GEMINI_KEY = localStorage.getItem('ftw_gemini_key') || '';
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+const UPDATED = "23 May 2026";
+const CONT_COLOR = {"Africa":"#c9a84c","Asia":"#3d8c7a","Europe":"#7b6fc9","North America":"#c2440a","Oceania":"#4a9bc2","South America":"#c96b7b"};
+const CONT_BG = {"Africa":"bg-africa","Asia":"bg-asia","Europe":"bg-europe","North America":"bg-namerica","Oceania":"bg-oceania","South America":"bg-samerica"};
 
-const CONT_COLOR = {
-  "Africa":"#c9a84c","Asia":"#3d8c7a","Europe":"#7b6fc9",
-  "North America":"#c2440a","Oceania":"#4a9bc2","South America":"#c96b7b"
-};
-
-/* ── COUNTRIES DATA ── */
+// Format: [continent, flag, country, capital, lat, lon, [headline, stat, source], [headline, stat, source], [headline, stat, source]]
 const COUNTRIES = [
-  ["Africa","🇩🇿","Algeria","Algiers",36.74,3.06],
-  ["Africa","🇦🇴","Angola","Luanda",-8.84,13.23],
-  ["Africa","🇧🇯","Benin","Porto-Novo",6.37,2.42],
-  ["Africa","🇧🇼","Botswana","Gaborone",-24.65,25.91],
-  ["Africa","🇧🇫","Burkina Faso","Ouagadougou",12.37,-1.53],
-  ["Africa","🇧🇮","Burundi","Gitega",-3.43,29.93],
-  ["Africa","🇨🇲","Cameroon","Yaoundé",3.87,11.52],
-  ["Africa","🇨🇻","Cape Verde","Praia",14.93,-23.51],
-  ["Africa","🇨🇫","Central African Rep.","Bangui",4.36,18.56],
-  ["Africa","🇹🇩","Chad","N'Djamena",12.11,15.04],
-  ["Africa","🇰🇲","Comoros","Moroni",-11.7,43.26],
-  ["Africa","🇨🇬","Congo","Brazzaville",-4.27,15.28],
-  ["Africa","🇨🇩","DR Congo","Kinshasa",-4.32,15.32],
-  ["Africa","🇩🇯","Djibouti","Djibouti City",11.59,43.14],
-  ["Africa","🇪🇬","Egypt","Cairo",30.06,31.25],
-  ["Africa","🇬🇶","Equatorial Guinea","Malabo",3.75,8.78],
-  ["Africa","🇪🇷","Eritrea","Asmara",15.34,38.93],
-  ["Africa","🇸🇿","Eswatini","Mbabane",-26.32,31.14],
-  ["Africa","🇪🇹","Ethiopia","Addis Ababa",9.03,38.74],
-  ["Africa","🇬🇦","Gabon","Libreville",0.39,9.45],
-  ["Africa","🇬🇲","Gambia","Banjul",13.45,-16.58],
-  ["Africa","🇬🇭","Ghana","Accra",5.56,-0.2],
-  ["Africa","🇬🇳","Guinea","Conakry",9.54,-13.68],
-  ["Africa","🇬🇼","Guinea-Bissau","Bissau",11.86,-15.6],
-  ["Africa","🇨🇮","Ivory Coast","Yamoussoukro",6.82,-5.28],
-  ["Africa","🇰🇪","Kenya","Nairobi",-1.29,36.82],
-  ["Africa","🇱🇸","Lesotho","Maseru",-29.32,27.48],
-  ["Africa","🇱🇷","Liberia","Monrovia",6.3,-10.8],
-  ["Africa","🇱🇾","Libya","Tripoli",32.9,13.18],
-  ["Africa","🇲🇬","Madagascar","Antananarivo",-18.91,47.54],
-  ["Africa","🇲🇼","Malawi","Lilongwe",-13.97,33.79],
-  ["Africa","🇲🇱","Mali","Bamako",12.65,-8.0],
-  ["Africa","🇲🇷","Mauritania","Nouakchott",18.08,-15.97],
-  ["Africa","🇲🇺","Mauritius","Port Louis",-20.16,57.5],
-  ["Africa","🇲🇦","Morocco","Rabat",34.02,-6.85],
-  ["Africa","🇲🇿","Mozambique","Maputo",-25.97,32.59],
-  ["Africa","🇳🇦","Namibia","Windhoek",-22.56,17.08],
-  ["Africa","🇳🇪","Niger","Niamey",13.51,2.12],
-  ["Africa","🇳🇬","Nigeria","Abuja",9.07,7.4],
-  ["Africa","🇷🇼","Rwanda","Kigali",-1.94,30.06],
-  ["Africa","🇸🇹","São Tomé & Príncipe","São Tomé",0.34,6.73],
-  ["Africa","🇸🇳","Senegal","Dakar",14.72,-17.47],
-  ["Africa","🇸🇨","Seychelles","Victoria",-4.62,55.45],
-  ["Africa","🇸🇱","Sierra Leone","Freetown",8.49,-13.23],
-  ["Africa","🇸🇴","Somalia","Mogadishu",2.05,45.34],
-  ["Africa","🇿🇦","South Africa","Pretoria",-25.74,28.19],
-  ["Africa","🇸🇸","South Sudan","Juba",4.86,31.6],
-  ["Africa","🇸🇩","Sudan","Khartoum",15.55,32.53],
-  ["Africa","🇹🇿","Tanzania","Dodoma",-6.18,35.74],
-  ["Africa","🇹🇬","Togo","Lomé",6.14,1.22],
-  ["Africa","🇹🇳","Tunisia","Tunis",36.82,10.17],
-  ["Africa","🇺🇬","Uganda","Kampala",0.32,32.58],
-  ["Africa","🇿🇲","Zambia","Lusaka",-15.42,28.28],
-  ["Africa","🇿🇼","Zimbabwe","Harare",-17.83,31.05],
-  ["Asia","🇦🇫","Afghanistan","Kabul",34.52,69.18],
-  ["Asia","🇦🇲","Armenia","Yerevan",40.18,44.51],
-  ["Asia","🇦🇿","Azerbaijan","Baku",40.41,49.87],
-  ["Asia","🇧🇭","Bahrain","Manama",26.21,50.59],
-  ["Asia","🇧🇩","Bangladesh","Dhaka",23.72,90.41],
-  ["Asia","🇧🇹","Bhutan","Thimphu",27.47,89.64],
-  ["Asia","🇧🇳","Brunei","Bandar Seri Begawan",4.94,114.95],
-  ["Asia","🇰🇭","Cambodia","Phnom Penh",11.55,104.92],
-  ["Asia","🇨🇳","China","Beijing",39.91,116.39],
-  ["Asia","🇨🇾","Cyprus","Nicosia",35.17,33.37],
-  ["Asia","🇬🇪","Georgia","Tbilisi",41.69,44.83],
-  ["Asia","🇮🇳","India","New Delhi",28.61,77.21],
-  ["Asia","🇮🇩","Indonesia","Jakarta",-6.21,106.85],
-  ["Asia","🇮🇷","Iran","Tehran",35.69,51.42],
-  ["Asia","🇮🇶","Iraq","Baghdad",33.34,44.4],
-  ["Asia","🇮🇱","Israel","Jerusalem",31.77,35.22],
-  ["Asia","🇯🇵","Japan","Tokyo",35.69,139.69],
-  ["Asia","🇯🇴","Jordan","Amman",31.95,35.93],
-  ["Asia","🇰🇿","Kazakhstan","Astana",51.18,71.45],
-  ["Asia","🇰🇼","Kuwait","Kuwait City",29.37,47.98],
-  ["Asia","🇰🇬","Kyrgyzstan","Bishkek",42.87,74.59],
-  ["Asia","🇱🇦","Laos","Vientiane",17.97,102.6],
-  ["Asia","🇱🇧","Lebanon","Beirut",33.89,35.5],
-  ["Asia","🇲🇾","Malaysia","Kuala Lumpur",3.15,101.7],
-  ["Asia","🇲🇻","Maldives","Malé",4.17,73.51],
-  ["Asia","🇲🇳","Mongolia","Ulaanbaatar",47.91,106.88],
-  ["Asia","🇲🇲","Myanmar","Naypyidaw",19.75,96.1],
-  ["Asia","🇳🇵","Nepal","Kathmandu",27.72,85.32],
-  ["Asia","🇰🇵","North Korea","Pyongyang",39.02,125.75],
-  ["Asia","🇴🇲","Oman","Muscat",23.61,58.59],
-  ["Asia","🇵🇰","Pakistan","Islamabad",33.72,73.06],
-  ["Asia","🇵🇸","Palestine","Ramallah",31.9,35.2],
-  ["Asia","🇵🇭","Philippines","Manila",14.6,120.98],
-  ["Asia","🇶🇦","Qatar","Doha",25.29,51.53],
-  ["Asia","🇸🇦","Saudi Arabia","Riyadh",24.69,46.72],
-  ["Asia","🇸🇬","Singapore","Singapore",1.29,103.85],
-  ["Asia","🇰🇷","South Korea","Seoul",37.57,126.98],
-  ["Asia","🇱🇰","Sri Lanka","Colombo",6.93,79.86],
-  ["Asia","🇸🇾","Syria","Damascus",33.51,36.29],
-  ["Asia","🇹🇼","Taiwan","Taipei",25.05,121.53],
-  ["Asia","🇹🇯","Tajikistan","Dushanbe",38.56,68.77],
-  ["Asia","🇹🇭","Thailand","Bangkok",13.75,100.52],
-  ["Asia","🇹🇱","Timor-Leste","Dili",-8.56,125.58],
-  ["Asia","🇹🇷","Turkey","Ankara",39.93,32.86],
-  ["Asia","🇹🇲","Turkmenistan","Ashgabat",37.95,58.38],
-  ["Asia","🇦🇪","UAE","Abu Dhabi",24.47,54.37],
-  ["Asia","🇺🇿","Uzbekistan","Tashkent",41.3,69.27],
-  ["Asia","🇻🇳","Vietnam","Hanoi",21.03,105.84],
-  ["Asia","🇾🇪","Yemen","Sanaa",15.35,44.21],
-  ["Europe","🇦🇱","Albania","Tirana",41.33,19.82],
-  ["Europe","🇦🇩","Andorra","Andorra la Vella",42.51,1.52],
-  ["Europe","🇦🇹","Austria","Vienna",48.21,16.37],
-  ["Europe","🇧🇾","Belarus","Minsk",53.9,27.57],
-  ["Europe","🇧🇪","Belgium","Brussels",50.85,4.35],
-  ["Europe","🇧🇦","Bosnia & Herzegovina","Sarajevo",43.85,18.38],
-  ["Europe","🇧🇬","Bulgaria","Sofia",42.7,23.32],
-  ["Europe","🇭🇷","Croatia","Zagreb",45.81,15.98],
-  ["Europe","🇨🇿","Czech Republic","Prague",50.09,14.42],
-  ["Europe","🇩🇰","Denmark","Copenhagen",55.68,12.57],
-  ["Europe","🇪🇪","Estonia","Tallinn",59.44,24.75],
-  ["Europe","🇫🇮","Finland","Helsinki",60.17,24.94],
-  ["Europe","🇫🇷","France","Paris",48.85,2.35],
-  ["Europe","🇩🇪","Germany","Berlin",52.52,13.41],
-  ["Europe","🇬🇷","Greece","Athens",37.98,23.73],
-  ["Europe","🇭🇺","Hungary","Budapest",47.5,19.04],
-  ["Europe","🇮🇸","Iceland","Reykjavik",64.14,-21.9],
-  ["Europe","🇮🇪","Ireland","Dublin",53.33,-6.25],
-  ["Europe","🇮🇹","Italy","Rome",41.9,12.48],
-  ["Europe","🇽🇰","Kosovo","Pristina",42.67,21.17],
-  ["Europe","🇱🇻","Latvia","Riga",56.95,24.11],
-  ["Europe","🇱🇮","Liechtenstein","Vaduz",47.14,9.52],
-  ["Europe","🇱🇹","Lithuania","Vilnius",54.69,25.28],
-  ["Europe","🇱🇺","Luxembourg","Luxembourg City",49.61,6.13],
-  ["Europe","🇲🇹","Malta","Valletta",35.9,14.51],
-  ["Europe","🇲🇩","Moldova","Chișinău",47.0,28.86],
-  ["Europe","🇲🇨","Monaco","Monaco",43.73,7.42],
-  ["Europe","🇲🇪","Montenegro","Podgorica",42.44,19.26],
-  ["Europe","🇳🇱","Netherlands","Amsterdam",52.37,4.89],
-  ["Europe","🇲🇰","North Macedonia","Skopje",42.0,21.43],
-  ["Europe","🇳🇴","Norway","Oslo",59.91,10.75],
-  ["Europe","🇵🇱","Poland","Warsaw",52.23,21.01],
-  ["Europe","🇵🇹","Portugal","Lisbon",38.72,-9.14],
-  ["Europe","🇷🇴","Romania","Bucharest",44.43,26.1],
-  ["Europe","🇷🇺","Russia","Moscow",55.75,37.62],
-  ["Europe","🇸🇲","San Marino","San Marino",43.94,12.46],
-  ["Europe","🇷🇸","Serbia","Belgrade",44.8,20.47],
-  ["Europe","🇸🇰","Slovakia","Bratislava",48.15,17.11],
-  ["Europe","🇸🇮","Slovenia","Ljubljana",46.05,14.51],
-  ["Europe","🇪🇸","Spain","Madrid",40.42,-3.7],
-  ["Europe","🇸🇪","Sweden","Stockholm",59.33,18.07],
-  ["Europe","🇨🇭","Switzerland","Bern",46.95,7.44],
-  ["Europe","🇺🇦","Ukraine","Kyiv",50.45,30.52],
-  ["Europe","🇬🇧","United Kingdom","London",51.51,-0.13],
-  ["Europe","🇻🇦","Vatican City","Vatican City",41.9,12.45],
-  ["North America","🇦🇬","Antigua & Barbuda","Saint John's",17.12,-61.85],
-  ["North America","🇧🇸","Bahamas","Nassau",25.05,-77.35],
-  ["North America","🇧🇧","Barbados","Bridgetown",13.1,-59.62],
-  ["North America","🇧🇿","Belize","Belmopan",17.25,-88.77],
-  ["North America","🇨🇦","Canada","Ottawa",45.42,-75.7],
-  ["North America","🇨🇷","Costa Rica","San José",9.93,-84.08],
-  ["North America","🇨🇺","Cuba","Havana",23.13,-82.38],
-  ["North America","🇩🇲","Dominica","Roseau",15.3,-61.39],
-  ["North America","🇩🇴","Dominican Republic","Santo Domingo",18.48,-69.9],
-  ["North America","🇸🇻","El Salvador","San Salvador",13.69,-89.19],
-  ["North America","🇬🇩","Grenada","St. George's",12.05,-61.75],
-  ["North America","🇬🇹","Guatemala","Guatemala City",14.64,-90.51],
-  ["North America","🇭🇹","Haiti","Port-au-Prince",18.54,-72.34],
-  ["North America","🇭🇳","Honduras","Tegucigalpa",14.09,-87.21],
-  ["North America","🇯🇲","Jamaica","Kingston",18.0,-76.79],
-  ["North America","🇲🇽","Mexico","Mexico City",19.43,-99.13],
-  ["North America","🇳🇮","Nicaragua","Managua",12.13,-86.28],
-  ["North America","🇵🇦","Panama","Panama City",8.99,-79.52],
-  ["North America","🇰🇳","Saint Kitts & Nevis","Basseterre",17.3,-62.72],
-  ["North America","🇱🇨","Saint Lucia","Castries",14.02,-60.98],
-  ["North America","🇻🇨","Saint Vincent & Gren.","Kingstown",13.16,-61.23],
-  ["North America","🇹🇹","Trinidad & Tobago","Port of Spain",10.65,-61.52],
-  ["North America","🇺🇸","United States","Washington D.C.",38.89,-77.03],
-  ["Oceania","🇦🇺","Australia","Canberra",-35.31,149.12],
-  ["Oceania","🇫🇯","Fiji","Suva",-18.14,178.44],
-  ["Oceania","🇰🇮","Kiribati","South Tarawa",1.33,173.0],
-  ["Oceania","🇲🇭","Marshall Islands","Majuro",7.09,171.38],
-  ["Oceania","🇫🇲","Micronesia","Palikir",6.92,158.16],
-  ["Oceania","🇳🇷","Nauru","Yaren",-0.55,166.92],
-  ["Oceania","🇳🇿","New Zealand","Wellington",-41.29,174.78],
-  ["Oceania","🇵🇼","Palau","Ngerulmud",7.5,134.62],
-  ["Oceania","🇵🇬","Papua New Guinea","Port Moresby",-9.44,147.18],
-  ["Oceania","🇼🇸","Samoa","Apia",-13.83,-171.77],
-  ["Oceania","🇸🇧","Solomon Islands","Honiara",-9.43,160.05],
-  ["Oceania","🇹🇴","Tonga","Nukuʻalofa",-21.14,-175.22],
-  ["Oceania","🇹🇻","Tuvalu","Funafuti",-8.52,179.2],
-  ["Oceania","🇻🇺","Vanuatu","Port Vila",-17.73,168.32],
-  ["South America","🇦🇷","Argentina","Buenos Aires",-34.61,-58.38],
-  ["South America","🇧🇴","Bolivia","Sucre",-19.04,-65.26],
-  ["South America","🇧🇷","Brazil","Brasília",-15.78,-47.93],
-  ["South America","🇨🇱","Chile","Santiago",-33.46,-70.65],
-  ["South America","🇨🇴","Colombia","Bogotá",4.71,-74.07],
-  ["South America","🇪🇨","Ecuador","Quito",-0.23,-78.52],
-  ["South America","🇬🇾","Guyana","Georgetown",6.8,-58.16],
-  ["South America","🇵🇾","Paraguay","Asunción",-25.28,-57.65],
-  ["South America","🇵🇪","Peru","Lima",-12.05,-77.05],
-  ["South America","🇸🇷","Suriname","Paramaribo",5.87,-55.17],
-  ["South America","🇺🇾","Uruguay","Montevideo",-34.9,-56.19],
-  ["South America","🇻🇪","Venezuela","Caracas",10.49,-66.88],
+["Africa","🇩🇿","Algeria","Algiers",36.74,3.06,["Youth unemployment is structural — 30% cannot find work","3 million young Algerians have left the formal economy since 2020. Youth unemployment stands at 29.9%. Most college graduates spend 5 years without formal employment.","World Bank 2026"],["Public hospitals lack basic medicines in 60% of provinces","Healthcare spending is 6.6% of GDP versus an Arab world average of 9.1%. Rural patients travel an average of 45km to reach a specialist.","WHO 2026"],["1.2 million people live in informal settlements with no legal tenure","Urban slum population has grown 18% since 2019, driven by rural-to-city migration and housing costs absorbing 50%+ of household income.","UN-Habitat 2026"]],
+["Africa","🇦🇴","Angola","Luanda",-8.84,13.23,["54% of Angolans live below the poverty line despite oil wealth","Angola is Africa's second-largest oil producer. The bottom 40% earns less than $2.15 per day. Oil revenues fund an elite and a capital that ignores the rest.","World Bank 2026"],["Child malnutrition affects 38% of children under five","Angola ranks 148th of 166 on the Global Hunger Index. Stunting rates have not improved since 2015 despite consistent economic growth.","UNICEF 2026"],["Only 30% of rural Angolans have access to clean water","Cholera outbreaks affected 32 of 164 municipalities in 2025. Diarrheal disease remains the leading cause of child death.","WHO 2026"]],
+["Africa","🇧🇯","Benin","Porto-Novo",6.37,2.42,["Jihadist attacks in the north have displaced 400,000 people","Violence from Sahel-linked armed groups has killed over 600 civilians since 2022. Humanitarian access to northern communes is severely restricted.","ACLED 2026"],["67% of the population has no electricity","Rural electrification stands at 9%. Over 8 million people cook with solid biomass fuel, causing chronic respiratory illness.","IEA 2026"],["Maternal mortality stands at 391 per 100,000 live births","Only 54% of births are attended by skilled health workers. There is one doctor per 12,000 people. Most hospitals in rural districts have no reliable electricity.","WHO 2026"]],
+["Africa","🇧🇼","Botswana","Gaborone",-24.65,25.91,["Botswana has one of the world's highest HIV prevalence rates — 20.8%","470,000 people live with HIV. Despite high treatment coverage, stigma prevents 15% from accessing antiretroviral therapy.","UNAIDS 2026"],["Youth unemployment has reached 45% despite record diamond revenues","GDP per capita ranks mid-tier in Africa but the Gini coefficient of 53 makes it one of the world's most unequal societies.","World Bank 2026"],["The Okavango basin faces severe water stress — reservoirs fell to 18% capacity in March 2026","The worst dry season in 14 years. 60% of the country faces water scarcity as aquifers are depleted faster than they recharge.","SADC 2026"]],
+["Africa","🇧🇫","Burkina Faso","Ouagadougou",12.37,-1.53,["2.1 million people are internally displaced — West Africa's largest displacement crisis","Armed group violence has made 40% of national territory inaccessible to humanitarian workers. 6,000 schools have been closed since 2019.","UNHCR 2026"],["Over 3.5 million face acute food insecurity — WFP has cut rations by 50%","A 70% funding shortfall has forced WFP to halve food assistance. Famine conditions are projected for northern provinces by July 2026.","WFP 2026"],["Only 11% of Burkina Faso has electricity — outages last 18 hours daily in the capital","The military government has suspended most international NGO operations, crippling humanitarian response.","IEA 2026"]],
+["Africa","🇧🇮","Burundi","Gitega",-3.43,29.93,["Burundi is the world's hungriest country — GHI score of 46.0","87% of the population depends on subsistence agriculture. 1 in 5 children is acutely malnourished. Annual per capita income is $238.","GHI 2026"],["3 million Burundians need humanitarian assistance — 25% of the population","There is one doctor per 50,000 people. Most hospitals lack running water. International access is restricted.","UN OCHA 2026"],["Press freedom is nonexistent — independent journalists face arrest, torture and exile","The ruling party controls all licensed broadcast media. Citizens rely on word of mouth for news.","RSF 2026"]],
+["Africa","🇨🇲","Cameroon","Yaoundé",3.87,11.52,["The Anglophone crisis has displaced 700,000 people — 700 schools remain closed","Armed separatist conflict has killed an estimated 6,000 civilians since 2017. A generation of children in the northwest has no access to schooling.","Crisis Group 2026"],["37% of Cameroonians have no safe drinking water — cholera is in all 10 regions","The Far North recorded 4,200 cholera cases in Q1 2026 alone. Water infrastructure has collapsed in conflict-affected areas.","WHO 2026"],["Youth unemployment in urban areas stands at 42%","Yaoundé and Douala absorb 200,000 new job-seekers annually. Formal sector growth is under 2%. 93% of the workforce is in informal, unprotected employment.","ILO 2026"]],
+["Africa","🇨🇫","Central African Rep.","Bangui",4.36,18.56,["CAR is the world's second least developed country — 71% live in poverty","Armed groups control 60% of national territory. HDI rank is 188 of 193. Life expectancy is 54 years.","UNDP 2026"],["3 million people — 57% of the population — need humanitarian aid","Only 30% of humanitarian needs are funded. Sexual violence is used systematically as a weapon of war. 700,000 are internally displaced.","UN OCHA 2026"],["There are fewer than 400 doctors for 5.5 million people","Over 50% of health facilities were damaged or destroyed in ongoing conflict. Healthcare has functionally collapsed outside Bangui.","WHO 2026"]],
+["Africa","🇹🇩","Chad","N'Djamena",12.11,15.04,["7.5 million Chadians — 45% of the population — face acute food insecurity","Three consecutive poor harvests and 1.2 million refugees have overwhelmed food systems. WFP has cut rations for 2 million people.","WFP 2026"],["Chad hosts more refugees than any African country relative to GDP","1.2 million registered refugees from Sudan, CAR and Nigeria. Host communities share the same scarce resources.","UNHCR 2026"],["Only 9% of Chadians have electricity — women spend 3 hours daily collecting water and fuel","National grid coverage is among the lowest globally. Rural women bear the full burden of household energy poverty.","IEA 2026"]],
+["Africa","🇨🇩","DR Congo","Kinshasa",-4.32,15.32,["6.9 million people are displaced — Africa's largest internal displacement crisis","M23 rebel advances in 2025 captured Goma and Bukavu. Over 2,000 civilians died in eastern Congo in early 2026. 25.6 million face acute food insecurity.","UNHCR 2026"],["4.8 million children are acutely malnourished — the world's worst crisis for children","In North Kivu, the global acute malnutrition rate is 18% — nearly double the emergency threshold of 10%.","UNICEF 2026"],["73% of the DRC population has no electricity","The Congo River has enough hydropower potential to power the entire continent. Less than 2% of rural households are connected to the grid.","IEA 2026"]],
+["Africa","🇪🇬","Egypt","Cairo",30.06,31.25,["Egypt's worst economic crisis in decades — 32 million live below the poverty line","Inflation peaked at 38% in 2025. The Egyptian pound has lost 70% of its value since 2022. 29% of the population is now in poverty.","World Bank 2026"],["19.5 million housing units are needed — the largest shortage in Africa","Cairo adds 500,000 new residents annually. 12 million people live in informal settlements with no running water or legal property rights.","UN-Habitat 2026"],["Food subsidies cut 30% under IMF conditionality — 4 million pushed into food insecurity","The bread subsidy reaches 70 million people. Its reduction has pushed the most vulnerable households into food crisis since 2024.","WFP 2026"]],
+["Africa","🇪🇹","Ethiopia","Addis Ababa",9.03,38.74,["15 million Ethiopians face emergency food insecurity — funding is only 34% of what is needed","Two consecutive failed rainy seasons destroyed crops in the south. Tigray, Amhara and Oromia remain affected by conflict.","WFP 2026"],["The Tigray conflict killed an estimated 300,000–500,000 people between 2020–2022","Despite a ceasefire, humanitarian access remains restricted. Sexual violence during the conflict was described by the UN as 'systematic and widespread.'","UN Human Rights 2026"],["Drought has killed over 50% of livestock in pastoral areas of the Somali region","Communities have contributed almost nothing to global emissions yet pay the highest price of climate change. East Africa aid is at a 10-year low.","Oxfam 2026"]],
+["Africa","🇬🇭","Ghana","Accra",5.56,-0.2,["Ghana's 2023 debt default pushed 850,000 people into poverty","Public sector wages were cut. Healthcare and education spending fell 22% in real terms in 2024. The cedi has lost 55% of its value against the dollar since 2022.","IMF 2026"],["Youth unemployment stands at 48% — the highest since independence","Ghana adds 300,000 young people to the labor market annually. Fewer than 80,000 formal jobs are created each year.","ILO 2026"],["Galamsey — illegal mining — has poisoned 60% of Ghana's water bodies","The Pra, Birim and Ankobra rivers are biologically dead in stretches. Communities rely on these rivers for drinking water. No meaningful enforcement has occurred.","EPA Ghana 2026"]],
+["Africa","🇬🇳","Guinea","Conakry",9.54,-13.68,["55% of Guineans live below the poverty line — despite being the world's largest bauxite producer","Per capita income is $930. Mining revenues have not translated into public services for the majority.","World Bank 2026"],["A military junta rules since the 2021 coup — no election date announced","All opposition parties are banned. Journalists face arbitrary detention. 4 coups have occurred in West Africa since 2021.","Freedom House 2026"],["Only 26% of Guineans have electricity — Conakry suffers 20-hour daily power outages","This, despite the Konkouré River's abundant hydropower potential. Guinea's wealth and Guinea's people live in different worlds.","IEA 2026"]],
+["Africa","🇨🇮","Ivory Coast","Yamoussoukro",6.82,-5.28,["Ivory Coast produces 45% of the world's cocoa — the average cocoa farmer earns $0.78 per day","Child labor affects an estimated 1.56 million children on cocoa farms supplying global chocolate brands.","ILO 2026"],["Despite strong economic growth, 39% of Ivorians still live in poverty","16% of children under five are stunted — a rate unchanged since 2015. Economic growth has not reached those who need it most.","World Bank 2026"],["Intercommunal violence over land has displaced 300,000 in the west","Climate-driven migration is intensifying competition over arable land. No durable solution has been found in 10 years of negotiations.","ACLED 2026"]],
+["Africa","🇰🇪","Kenya","Nairobi",-1.29,36.82,["6.5 million Kenyans face acute food insecurity following two consecutive drought seasons","Water costs in worst-hit communities have risen 2,000%. Aid funding for the response is only 13.4% of what is needed.","Oxfam 2026"],["Nationwide protests in 2024 killed 50 people — economic demands are unresolved","Youth-led demonstrations against tax hikes reflect an economy where 67% of young Kenyans are unemployed or underemployed.","Amnesty International 2026"],["28 million Kenyans have no electricity — rural women spend 3.5 hours daily on water and fuel collection","Rural electrification stands at 37% despite the Last Mile Connectivity project launched a decade ago.","IEA 2026"]],
+["Africa","🇱🇾","Libya","Tripoli",32.9,13.18,["Libya remains divided — 824,000 people are displaced or in need of humanitarian aid","No functioning national state exists. The Tripoli-based GNU and Benghazi-based HOR control different halves of the country.","UN OCHA 2026"],["Libya is the primary departure point for migrants to Europe — 700,000 in 2025","Migrants face documented torture, slavery and sexual violence in militia-run detention centers under nominal government supervision.","UNHCR 2026"],["The 2023 Derna floods killed 11,300 people — reconstruction has not begun","The Wadi Derna dam collapse destroyed 25% of the city. Two years later, 40,000 residents remain displaced. Reconstruction funds have been misappropriated.","MSF 2026"]],
+["Africa","🇲🇬","Madagascar","Antananarivo",-18.91,47.54,["Madagascar is the world's fourth poorest country — 77% live on under $2.15 per day","The Grand Sud region is in its sixth year of drought-driven food insecurity. Child labor affects 32% of children aged 5-17.","World Bank 2026"],["1.9 million in southern Madagascar face emergency levels of hunger","Cyclone Gamane in 2024 destroyed crops across the north. Aid funding covers only 28% of identified need.","WFP 2026"],["Only 6% of Madagascans have electricity — deforestation for charcoal has destroyed 90% of original forest cover","Rural areas have near-zero grid coverage. The charcoal economy is destroying biodiversity faster than almost anywhere on earth.","IEA 2026"]],
+["Africa","🇲🇼","Malawi","Lilongwe",-13.97,33.79,["Malawi is the world's hungriest country not in active conflict — GHI score of 42.7","Cholera killed over 1,700 people since 2022. Cyclone Freddy in 2023 affected 2.2 million people and destroyed 500,000 hectares of crops.","GHI 2026"],["71% of Malawians live on under $2.15 per day","Malawi has the second most expensive fuel in the world relative to income. Transport costs consume up to 40% of household income for rural families.","World Bank 2026"],["One doctor per 88,000 people — women delivering in hospitals bring their own gloves","The nurse-to-patient ratio is 1:5,000. Chronic medicine shortages affect all government hospitals. The healthcare system runs on improvisation.","WHO 2026"]],
+["Africa","🇲🇱","Mali","Bamako",12.65,-8.0,["A military junta has expelled French forces, UN peacekeepers and most NGOs — jihadists now control 60% of territory","300,000 people were newly displaced in 2025. Food insecurity affects 4.5 million. Humanitarian access is blocked across the north.","Crisis Group 2026"],["1 million children are out of school — armed groups specifically target teachers","2,000 schools remain closed in the north and center. A generation is growing up without education in three regions of Mali.","UNICEF 2026"],["Only 43% of Malians have safe drinking water — cholera outbreaks have become annual","International organizations face security restrictions preventing water system repair. The situation is worsening with no political solution in sight.","WHO 2026"]],
+["Africa","🇲🇦","Morocco","Rabat",34.02,-6.85,["The 2023 Al Haouz earthquake killed 2,900 — reconstruction is 40% complete","Over 60,000 homes were destroyed in the High Atlas. Many isolated mountain villages have still not received reconstruction funds.","World Bank 2026"],["Morocco is in structural water deficit — 7 major dams at under 30% capacity","Average annual rainfall has declined 30% since 1960. Agriculture employs 40% of the workforce but consumes 85% of water resources.","UN Water 2026"],["150,000 sub-Saharan migrants are expelled toward Libyan and Algerian deserts without water","The EU pays Morocco to prevent crossings. Migrants intercepted are collectively expelled to desert areas — documented violations of international law.","Human Rights Watch 2026"]],
+["Africa","🇲🇿","Mozambique","Maputo",-25.97,32.59,["Two jihadist insurgencies in the north have displaced 1 million people","The Cabo Delgado conflict, linked to IS since 2019, has killed 4,000 civilians. Gas field revenues have not reduced local poverty — 76% remain below the poverty line.","Crisis Group 2026"],["Mozambique is Africa's most climate-disaster-exposed country","5 major cyclones between 2019 and 2024 affected over 6 million people. Reconstruction debt is unsustainable.","UNICEF 2026"],["63% of Mozambicans have no clean water — cholera is endemic in all coastal provinces","Cyclone damage to water infrastructure has never been fully repaired. Sewage treatment covers less than 3% of the population.","WHO 2026"]],
+["Africa","🇳🇬","Nigeria","Abuja",9.07,7.4,["133 million Nigerians — 63% of the population — live in multidimensional poverty","Nigeria adds 5 million young people to the labor market each year. Fewer than 500,000 formal jobs are created annually. 70% of young Nigerians are in precarious or no work.","UNDP 2026"],["Nigeria faces a housing deficit of 28 million units — the largest in Africa","70% of urban residents live in informal settlements. The UN-Habitat World Cities Report 2026 ranked Lagos among cities with the world's most severe overcrowding.","UN-Habitat 2026"],["Flooding in 2025 displaced 3.4 million — the worst on record","32 of 36 states were affected. Crops on 1.8 million hectares were destroyed. Emergency services reached only 12% of displaced communities within 2 weeks.","NEMA 2026"]],
+["Africa","🇷🇼","Rwanda","Kigali",-1.94,30.06,["Rwanda's military is backing the M23 rebels that have displaced 2 million in eastern DRC","The UN Group of Experts documented direct Rwandan military presence in DRC. Over 2,000 civilians have died in eastern Congo in early 2026.","UN Security Council 2026"],["52% of Rwandans remain in poverty despite impressive economic growth","Rwanda's GDP has grown 8% annually since 2010. The gains have been unevenly distributed. Rural poverty remains 20 points above urban.","World Bank 2026"],["Rwanda is the most densely populated country in mainland Africa — 525 people per sq km","Climate change is reducing yields on increasingly fragmented smallholdings. Land scarcity is a critical and growing vulnerability.","FAO 2026"]],
+["Africa","🇸🇳","Senegal","Dakar",14.72,-17.47,["6.4 million Senegalese — 35% — face moderate to severe food insecurity","Three consecutive below-average harvests have affected the north and east. The 2026 humanitarian response plan is funded at 29%.","WFP 2026"],["Senegal's democratic transition is under pressure — 2024 elections were marred by mass arrests","Former President Sall detained opposition leaders before the election. Protests left 16 dead. The new government faces deep inherited debt.","Freedom House 2026"],["55,000 arrived in the Canary Islands from West Africa in 2025 — an estimated 1,000 died at sea","The migration route from West Africa is now among the world's deadliest. Most are male, aged 18-30, with no legal path to European employment.","UNHCR 2026"]],
+["Africa","🇸🇱","Sierra Leone","Freetown",8.49,-13.23,["Sierra Leone has the world's highest maternal mortality rate — 443 deaths per 100,000 live births","Only 42% of births occur in health facilities. Most maternal deaths are from hemorrhage — preventable with basic care. There is one midwife per 6,000 women.","WHO 2026"],["60% of Sierra Leoneans live below the poverty line — unchanged since the civil war ended in 2002","Hospitals in 10 of 14 districts have no reliable electricity. Twenty-three years after the war, reconstruction of basic infrastructure remains incomplete.","World Bank 2026"],["Mudslides in August 2025 killed 400 people near Freetown","Unplanned construction on eroded slopes creates chronic disaster risk. Urban planning capacity is near-zero. No early warning system exists.","UN OCHA 2026"]],
+["Africa","🇸🇴","Somalia","Mogadishu",2.05,45.34,["6.5 million Somalis face acute food insecurity — the number has doubled since 2025","The 2026 Humanitarian Response Plan has received only 13.4% of required funding. One in three Somalis is in crisis hunger.","Oxfam 2026"],["Al-Shabaab controls 20% of national territory and taxes 30% of the economy","The group earned an estimated $100 million in extortion revenues in 2025. It operates parallel courts, schools and health clinics.","UN Monitoring Group 2026"],["3.8 million Somalis are internally displaced — the most in the country's history","Climate shocks have overtaken conflict as the primary driver of displacement. Simultaneous floods and droughts are becoming annual.","UNHCR 2026"]],
+["Africa","🇿🇦","South Africa","Pretoria",-25.74,28.19,["Gender-based violence crisis — 53,000 cases of femicide and attempted femicide reported in 2025","The femicide rate is five times the global average. Courts are backlogged by 600,000+ cases. Shelters protect only 3% of those who need them.","SAPS 2026"],["Youth unemployment stands at 60.7% — the highest ever recorded","Power outages averaging 6-12 hours daily destroyed an estimated 150,000 small businesses since 2022. The formal economy employs only 30% of working-age South Africans.","Stats SA 2026"],["Eskom debt of 400 billion rand is crippling the state — the crisis has reversed a decade of poverty reduction","Power cuts cost the economy $600 million per week at peak. The electricity crisis is the single largest driver of poverty increase since the post-apartheid era.","National Treasury 2026"]],
+["Africa","🇸🇸","South Sudan","Juba",4.86,31.6,["10 million South Sudanese — 80% of the population — need humanitarian assistance","7.7 million face acute food insecurity. The return to civil war is a growing risk as the peace deal continues to fray.","UN OCHA 2026"],["South Sudan has the world's highest maternal mortality — 1,223 per 100,000 births","There is one doctor per 65,000 people. 70% of health facilities were damaged during the 2013–2018 civil war and have not been repaired.","WHO 2026"],["Floods submerged 30% of national territory in 2025 — the worst in 60 years","1.5 million people were displaced. Cattle — the primary wealth of pastoral communities — died in the hundreds of thousands.","UNHCR 2026"]],
+["Africa","🇸🇩","Sudan","Khartoum",15.55,32.53,["Sudan is the world's largest displacement crisis — 10 million displaced since April 2023","The RSF-SAF conflict has killed an estimated 150,000 people. Famine declared in 5 areas. 70–80% of hospitals are non-functional. El Fasher is under siege.","Action Against Hunger 2026"],["25.6 million Sudanese face acute food insecurity — the highest number ever recorded","Two simultaneous famines were confirmed in Gaza and Sudan — a first this century. The RSF has used starvation as a systematic weapon of war.","WFP 2026"],["The siege of El Fasher has left hundreds of thousands with no food or water","North Darfur's last major government-held city is surrounded. MSF has documented mass atrocities against civilians. Humanitarian convoys are blocked.","MSF 2026"]],
+["Africa","🇹🇿","Tanzania","Dodoma",-6.18,35.74,["48% of Tanzanians live below the poverty line — income gains have been captured by the wealthy","Economic growth has averaged 6% for a decade. Poverty reduction has stalled. The bottom 40% has seen almost no improvement since 2015.","World Bank 2026"],["4 million people faced food insecurity after the 2025 long rains failure","80% of Tanzanians depend on rain-fed agriculture. Climate variability has made harvests unpredictable year on year.","FAO 2026"],["Female genital mutilation affects 15% of women nationally — up to 72% in some northern regions","FGM has been illegal since 1998. Community enforcement makes prosecution rare. Girls in affected regions face this before age 12.","UNICEF 2026"]],
+["Africa","🇺🇬","Uganda","Kampala",0.32,32.58,["Uganda hosts 1.6 million refugees — the third largest refugee population in the world","Most are from South Sudan and DRC. The self-reliance settlement model is 75% underfunded. Refugees and host communities compete for the same scarce resources.","UNHCR 2026"],["41% of Ugandans live below the poverty line — poverty reduction progress has reversed","COVID-19 economic shocks reversed gains made between 2000–2018. Youth unemployment exceeds 60% in urban areas.","World Bank 2026"],["Uganda's Anti-Homosexuality Act (2023) has collapsed HIV prevention for key populations","The law prescribes death in some cases. PEPFAR and other donors restricted funds. HIV prevention programs targeting the most vulnerable have collapsed.","Human Rights Watch 2026"]],
+["Africa","🇿🇲","Zambia","Lusaka",-15.42,28.28,["Zambia defaulted on debt in 2020 — health and education spending fell 30% under austerity","The kwacha has lost 65% of its value since 2019. 60% of Zambians remain in multidimensional poverty.","IMF 2026"],["A severe drought has caused a national electricity emergency — 18-hour daily power cuts","Zambia generates 85% of electricity from hydropower. The Kariba Dam fell to 12% capacity in 2025. Mining — the primary employer — has cut production.","ZESCO 2026"],["Child marriage affects 29% of girls — one of the highest rates in the world","Girls from the poorest quintile are 4 times more likely to be married before 18. Drought and poverty are driving increases as families reduce the number of mouths to feed.","UNICEF 2026"]],
+["Africa","🇿🇼","Zimbabwe","Harare",-17.83,31.05,["7.6 million Zimbabweans face food insecurity — a national emergency was declared in April 2024","El Niño drought destroyed 80% of the maize harvest in Matabeleland. WFP has funding for only 18% of those who need assistance.","WFP 2026"],["Zimbabwe's economy has contracted for a decade — hyperinflation has returned","A new gold-backed currency collapsed within months of launch. The official unemployment rate is 90%. Most Zimbabweans survive on remittances from 4 million in the diaspora.","IMF 2026"],["Cholera has killed over 1,000 people since 2023 — the worst outbreak since 2008–2009","Harare's water treatment plants have been non-functional for two years. 70% of urban water infrastructure has exceeded its lifespan.","WHO 2026"]],
+
+["Asia","🇦🇫","Afghanistan","Kabul",34.52,69.18,["10 million Afghans need food assistance — 3.5 million children suffer acute malnutrition","International aid has been cut by 40% since 2024. Nutrition services for millions have been suspended. Families in Kabul beg openly for food.","WFP 2026"],["Every Afghan woman and girl is banned from education and most employment","Girls have not attended secondary school since August 2021. Women are barred from universities, NGOs, parks and most employment. The UN calls it gender apartheid.","UN Women 2026"],["70% of Afghans live below the poverty line — the banking system collapsed in 2021","The economy has contracted 30% since the Taliban takeover. 75% of former government employees have not been paid since 2021. Per capita income is $350.","World Bank 2026"]],
+["Asia","🇦🇲","Armenia","Yerevan",40.18,44.51,["100,000 ethnic Armenians fled Nagorno-Karabakh in 2023 — none have been able to return","Azerbaijan's military offensive ended the 30-year Armenian enclave in 24 hours. The entire Armenian population fled. International response was minimal.","UNHCR 2026"],["Armenia's population has declined for 8 consecutive years — 80,000 emigrated in 2025 alone","Defence spending has risen to 6% of GDP since the 2020 war. The economy is under severe pressure from security costs and brain drain.","World Bank 2026"],["The 2023 blockade of the Lachin Corridor caused malnutrition and medicine shortages","Karabakh Armenians went 9 months without adequate food, medicine or fuel before the final offensive. The international community failed to act.","ICJ 2026"]],
+["Asia","🇦🇿","Azerbaijan","Baku",40.41,49.87,["Azerbaijan seized Nagorno-Karabakh in a 24-hour military offensive in September 2023","100,000 Armenians fled. No war crimes investigations have been opened. Azerbaijan hosted COP29 in 2024 while expanding oil and gas production.","ICC 2026"],["30 journalists are currently imprisoned — Azerbaijan ranks 164th of 180 on press freedom","Opposition is criminalized. Protest is banned. International NGOs are systematically expelled. The Aliyev family has ruled since 1993.","RSF 2026"],["26% of rural Azerbaijanis live in poverty despite oil wealth","Wealth is captured by a narrow elite. The non-oil economy has not been developed. Rural communities are dependent on agriculture with no social safety net.","Freedom House 2026"]],
+["Asia","🇧🇩","Bangladesh","Dhaka",23.72,90.41,["A measles outbreak has killed dozens of children in 2026 — immunization coverage collapsed under political instability","Vaccination coverage fell during the post-Hasina political transition. Experts link the collapse to disruptions in health administration.","WHO 2026"],["40 million Bangladeshis live in the climate-vulnerable coastal zone — 7 million expected displaced by 2050","The Sundarbans delta loses 60 sq km annually to sea-level rise. Cyclone Remal in 2024 displaced 800,000. The next generation has no viable farmland to inherit.","IPCC 2026"],["Garment workers — 4 million, 80% women — earn $95 per month with no independent unions","Bangladesh produces 8% of global garments. After Rana Plaza (2013), building safety improved. Wages have not.","ILO 2026"]],
+["Asia","🇧🇳","Brunei","Bandar Seri Begawan",4.94,114.95,["Brunei's Sharia penal code mandates death by stoning for same-sex relations","Enacted in 2019 despite international condemnation. No executions have been carried out but LGBT Bruneians live in fear. The law remains in force.","Human Rights Watch 2026"],["Migrant workers — 30% of the population — have no labor protections","Construction and domestic workers from Philippines, Indonesia and Bangladesh pay $8,000–15,000 in recruitment fees for jobs paying $300 per month.","ILO 2026"],["Oil reserves are projected to be exhausted by 2040 — no economic diversification has occurred","90% of government revenues come from hydrocarbons. GDP has contracted 20% since 2012. Young Bruneians entering the workforce find few private sector jobs.","World Bank 2026"]],
+["Asia","🇰🇭","Cambodia","Phnom Penh",11.55,104.92,["Cambodia is a de facto one-party state — all significant opposition leaders are in prison or exile","The Cambodian People's Party has held power since 1979. Elections in 2023 saw all opposition parties barred from participating. Hun Manet took power from his father.","Freedom House 2026"],["Land grabs for economic development have displaced 700,000 rural Cambodians since 2003","The garment sector employs 700,000 workers, 90% women, at $205 per month. Displacement removes communities from their ancestral land with minimal compensation.","World Bank 2026"],["Child labor in brick kilns affects 18% of children aged 10–14","Debt bondage is documented in kilns around Phnom Penh. Families take loans from kiln owners and are trapped in cycles of work that prevent children from attending school.","ILO 2026"]],
+["Asia","🇨🇳","China","Beijing",39.91,116.39,["1 million Uyghurs have been detained in 're-education camps' in Xinjiang since 2017","The UN Human Rights Office concluded that serious human rights violations amounting to crimes against humanity have occurred. China denies the finding and blocks all independent access.","OHCHR 2026"],["300 million rural Chinese migrants have no access to urban public services","The hukou household registration system denies migrant workers public housing, healthcare and education in cities where they work. Their children cannot attend city schools.","World Bank 2026"],["China's youth unemployment peaked at 21.3% in 2023 — official data publication was suspended","The government stopped releasing youth unemployment figures for 6 months. The revised methodology produces lower numbers. Economists estimate actual youth unemployment at 15–20%.","NBS 2026"]],
+["Asia","🇬🇪","Georgia","Tbilisi",41.69,44.83,["Mass protests against the ruling party's pro-Russia drift have continued for 6 months","Georgian Dream suspended EU accession talks in late 2024. Hundreds of thousands took to the streets. Police used water cannon and tear gas on peaceful demonstrators.","Amnesty International 2026"],["20% of Georgian territory is occupied by Russia following the 2008 war","South Ossetia and Abkhazia are controlled by Russian forces. 300,000 Georgians remain displaced. The occupation line moves incrementally southward, seizing new land each year.","UNHCR 2026"],["Poverty affects 15% of Georgians — rural poverty is double the urban rate","Remittances (16% of GDP) and tourism are the main income sources — both are volatile. Rural depopulation is accelerating as young Georgians move to Tbilisi or emigrate.","World Bank 2026"]],
+["Asia","🇮🇳","India","New Delhi",28.61,77.21,["63 million Indians are pushed into poverty every year by healthcare costs","85.9% of private healthcare is financed out-of-pocket. India spends 1.4% of GDP on public health. One catastrophic illness can destroy a family's savings in days.","One Health Trust 2026"],["North India recorded 48°C this week — 450 million outdoor workers have no legal heat protection","Banda, Uttar Pradesh hit 48°C on 22 May 2026. Pre-monsoon heat now arrives 2 weeks earlier each decade. No national law mandates rest for outdoor workers during heatwaves.","IMD 2026"],["194 million Indians remain food insecure — the top 1% holds 40% of national wealth","India ranked 105th of 127 on the Global Hunger Index. Caloric intake among the poorest quintile has not improved since 2012 despite being the world's 5th largest economy.","GHI 2026"]],
+["Asia","🇮🇩","Indonesia","Jakarta",-6.21,106.85,["Jakarta is sinking 25 cm per year — 2.5 million residents face chronic flooding","40% of North Jakarta is already below sea level. The capital is being relocated to Borneo at a cost of $35 billion. Coastal communities of the poor cannot follow.","World Bank 2026"],["2.4 million Indonesian children are engaged in child labor","Most work in agriculture, fishing and mining. In Sulawesi's nickel mines — supplying global EV battery manufacturers — child labor is documented despite company audits.","ILO 2026"],["9.4 million Indonesians are unemployed — youth unemployment stands at 19.7%","60% of the workforce is in informal employment with no social protection. The economy grows 5% annually but formal job creation lags population growth.","ILO 2026"]],
+["Asia","🇮🇷","Iran","Tehran",35.69,51.42,["Iran is in its deepest economic crisis since the revolution — inflation at 40%, rial worth 1% of its 2012 value","30 million Iranians live below the poverty line. The middle class has effectively ceased to exist. Sanctions and mismanagement have destroyed purchasing power.","World Bank 2026"],["550 protesters were killed in the 2022 Woman Life Freedom uprising","Mahsa Amini's death triggered the largest protests in the Islamic Republic's history. Executions of protesters — including minors — continued into 2024.","Amnesty International 2026"],["Lake Urmia has shrunk to 10% of its 1975 size — 50 cities face critical water shortages","Iran's water emergency is driven by drought and mismanagement. Isfahan's Zayandeh River is dry. Protests over water scarcity have occurred in 12 provinces.","UN Water 2026"]],
+["Asia","🇮🇶","Iraq","Baghdad",33.34,44.4,["25% of Iraqis live below the poverty line despite the world's fifth-largest oil reserves","Oil revenues fund the state but not public services. Youth unemployment is 36%. 90% of electricity comes from Iranian gas that can be cut off at any time.","World Bank 2026"],["3.4 million Iraqis remain displaced from ISIS conflict — only 40% have durable solutions","Many IDPs have been displaced for 10 years. Land disputes prevent return. Camp closures push families to informal settlements without services.","UNHCR 2026"],["The Tigris and Euphrates have lost 70% of their flow — sandstorms have risen from 2 to 300 per year","Temperatures have risen 2.5°C since 1950. Turkish and Iranian upstream damming and reduced snowmelt are drying Iraq's ancient river systems.","IPCC 2026"]],
+["Asia","🇮🇱","Israel","Jerusalem",31.77,35.22,["52,000 Palestinians killed in Gaza since October 2023 — 60% are women and children","The death toll confirmed by the Gaza Ministry of Health and cross-referenced by the UN makes this the deadliest conflict for children in the 21st century.","WHO 2026"],["100% of Gaza's population faces acute food insecurity — 1.1 million face catastrophic famine","WFP confirmed famine in northern Gaza. Humanitarian aid entry has been blocked or limited for 600+ days. Children are dying of malnutrition.","WFP 2026"],["90% of Gaza's buildings, 95% of hospitals and 80% of schools are damaged or destroyed","The UN estimates reconstruction will cost $40 billion and take 80 years. 1.9 million people are living in tents or rubble.","UNRWA 2026"]],
+["Asia","🇯🇵","Japan","Tokyo",35.69,139.69,["Japan is the fastest-aging society on earth — 30% of the population is over 65","By 2050, Japan's population will fall from 125 million to 87 million. Rural towns are already ghost communities. The pension and healthcare systems face unsustainable burdens.","Statistics Japan 2026"],["Japan has the highest rate of death by overwork — karoshi — in the developed world","The government acknowledges 2,700 karoshi deaths annually. Unions estimate the true number is 10 times higher. 80-hour weekly overtime has become normalized in many industries.","Ministry of Labour 2026"],["Japan is in its second consecutive year of economic contraction","GDP fell 0.2% in 2025 after a 0.1% contraction in 2024. 25 years of deflation psychology has made consumers reluctant to spend.","Bank of Japan 2026"]],
+["Asia","🇯🇴","Jordan","Amman",31.95,35.93,["Jordan has the world's highest per-capita refugee ratio — 750,000 registered Syrians","Including unregistered Syrians, the number may be 1.5 million. They compete with Jordanians for water in a country with only 145 cubic meters per person per year.","UNHCR 2026"],["Youth unemployment stands at 46% — the highest in the Arab world","Jordan's economy cannot absorb its growing young population. Educated Jordanians leave for Gulf states. Less-educated youth face permanent unemployment.","World Bank 2026"],["Water scarcity is existential — 145 cubic meters per person per year (threshold is 1,000)","Jordan ranks among the world's most water-scarce countries. Syrian refugees have increased demand by 30% in areas of highest concentration.","UN Water 2026"]],
+["Asia","🇰🇵","North Korea","Pyongyang",39.02,125.75,["42% of North Koreans are food insecure — the true figure may be much higher","No independent monitoring is allowed. The UN estimates 11 million people suffer severe food insecurity. Famine in the 1990s killed an estimated 1 million people.","WFP 2026"],["80,000–120,000 people are held in political prison camps","Three generations of a family can be imprisoned for the transgression of one member. No visits or communication are allowed. The system has existed since the 1950s.","UN Commission of Inquiry 2026"],["North Korea's nuclear weapons program consumes 24% of GDP","Resources that could feed 11 million people are diverted to weapons. The country has conducted 6 nuclear tests. The population lacks electricity for 12 hours daily.","38 North 2026"]],
+["Asia","🇱🇧","Lebanon","Beirut",33.89,35.5,["80% of Lebanon's population lives in poverty following the 2019 economic collapse","The Lebanese pound has lost 98% of its value. Savings were frozen. The Beirut port explosion (2020) killed 218 people. No one has been prosecuted.","World Bank 2026"],["The healthcare system has collapsed — 70% of Lebanon's doctors have emigrated since 2019","Hospitals lack medicine, electricity and staff. Patients pay in dollars in a country where 95% earn in devalued pounds.","WHO 2026"],["Hezbollah-Israel conflict in 2024 displaced 1.2 million Lebanese — 400,000 remain displaced","Israeli attacks destroyed 100,000 housing units. International reconstruction pledges have not materialized into funded programs.","UN OCHA 2026"]],
+["Asia","🇲🇾","Malaysia","Kuala Lumpur",3.15,101.7,["3.3 million migrant workers face systematic labor abuse with little recourse","Recruitment debt bondage is endemic. Passport confiscation is illegal but routine. Abuse in palm oil plantations supplying global food companies is extensively documented.","Human Rights Watch 2026"],["40% of Malaysian children in the bottom income quintile are stunted","Despite being an upper-middle income country, inequality means poverty-related malnutrition persists. Children of stateless communities are most severely affected.","UNICEF 2026"],["Kuala Lumpur recorded 40°C on 15 days in April 2026 — unprecedented","60% of the workforce is in outdoor occupations with no legal protection during heat emergencies. Malaysia has no national heat action plan.","Malaysian Meteorological Dept 2026"]],
+["Asia","🇲🇳","Mongolia","Ulaanbaatar",47.91,106.88,["The 2024 dzud — extreme winter — killed 7.7 million livestock and devastated herder families","Dzuds are becoming more frequent with climate change. Herders lost their entire livelihoods overnight. 10,000 rural families migrated to Ulaanbaatar in desperation.","UN OCHA 2026"],["Ulaanbaatar has the world's most polluted air in winter — coal heating kills hundreds annually","PM2.5 levels reach 133 times WHO safe limits in January. 60% of the capital's 1.6 million residents in ger districts burn coal in small stoves with no alternative.","WHO 2026"],["40% of Mongolia's population lives in extreme poverty after losing their herds","The nomadic herding economy sustains 30% of Mongolians. Climate volatility is making it increasingly nonviable.","World Bank 2026"]],
+["Asia","🇲🇲","Myanmar","Naypyidaw",19.75,96.1,["The 2021 military coup triggered civil war — 3.3 million are displaced, 18.6 million need aid","The military uses airstrikes on civilian areas. 26 attacks on healthcare workers were recorded in the first half of 2025 alone.","UN OCHA 2026"],["A 7.7 magnitude earthquake in March 2025 killed 3,649 people in Mandalay","The military blocked independent aid access for 3 weeks. Conflict continues to prevent full humanitarian access throughout the country.","WHO 2026"],["Myanmar is experiencing simultaneous famine, war, epidemic disease and natural disaster","WFP describes it as the world's most complex humanitarian crisis. Dengue, malaria and measles outbreaks are occurring in displacement camps. 80% of the population lives on under $3.65 per day.","WFP 2026"]],
+["Asia","🇳🇵","Nepal","Kathmandu",27.72,85.32,["Nepal emits 0.08% of global carbon — yet faces among the world's worst climate consequences","The Hindu Kush Himalayas are warming 0.7°C faster than the global average. Glacial Lake Outburst Floods displaced 15,000 in 2025.","ICIMOD 2026"],["Remittances are 25% of GDP — 600,000 Nepalis leave annually under debt bondage conditions","Most go to Qatar, UAE and Saudi Arabia. Nepal's foreign employment contributes billions to GDP while stripping the country of its working-age population.","World Bank 2026"],["42% of Nepali women have experienced gender-based violence","Chhaupadi — banishing menstruating women to outhouses — kills women every winter from cold and snake bites. It was criminalized in 2017 but remains widely practiced.","UNICEF 2026"]],
+["Asia","🇵🇰","Pakistan","Islamabad",33.72,73.06,["The 2022 floods submerged one third of Pakistan — 33 million affected, reconstruction is 45% complete","Pakistan contributes less than 1% of global emissions but is ranked 5th most vulnerable to climate change. Reconstruction debt has worsened an already severe fiscal crisis.","World Bank 2026"],["40% of Pakistani children under five are stunted — a rate unchanged since 2015","37 million Pakistanis are food insecure. Child nutrition programs have been defunded under IMF austerity conditions. Stunting rates have not improved in a decade.","UNICEF 2026"],["Pakistan has received 8 IMF bailouts — poverty has risen from 21% to 39% since 2020","Each bailout demands austerity cuts to health and education. Inflation reached 38% in 2023. Debt service consumes 78% of government revenues.","IMF 2026"]],
+["Asia","🇵🇸","Palestine","Ramallah",31.9,35.2,["52,000 Palestinians killed in Gaza — 60% women and children — the deadliest conflict for children this century","The death toll, confirmed by the Gaza Ministry of Health and verified by the UN, represents 1 in every 50 Gazans.","WHO 2026"],["100% of Gaza's population faces acute food insecurity — 1.1 million face catastrophic famine","WFP confirmed famine in northern Gaza. Aid entry has been blocked for 600+ days. Bakeries cannot operate. Children are dying of malnutrition-related illness.","WFP 2026"],["90% of buildings, 95% of hospitals and 80% of schools in Gaza are damaged or destroyed","The UN estimates reconstruction will take 80 years. 1.9 million people live in tents or rubble. 70% of land is inaccessible due to unexploded ordnance.","UNRWA 2026"]],
+["Asia","🇵🇭","Philippines","Manila",14.6,120.98,["18% of Filipinos live below the poverty line — typhoon exposure makes this structural","The Philippines is hit by an average of 20 typhoons per year. Each major typhoon destroys years of poverty reduction gains. Typhoon Pepito in 2024 displaced 6 million people.","World Bank 2026"],["11 million Filipino workers are abroad — remittances are 9% of GDP","OFWs sustain millions of families but face exploitation in the Middle East, Hong Kong and elsewhere. Domestic workers face documented high rates of abuse with little legal recourse.","ILO 2026"],["The Duterte drug war killed an estimated 6,000 people — most from poor urban communities","No police officer has been convicted for drug war killings. The ICC's case against Duterte was rejected by the Philippines — the ICC ruled it retains jurisdiction in 2023.","ICC 2026"]],
+["Asia","🇶🇦","Qatar","Doha",25.29,51.53,["6,500 migrant workers died building World Cup infrastructure between 2010 and 2022","The Guardian's investigation documented deaths from heat, cardiac arrest and unexplained causes. No company or official has been prosecuted. FIFA issued no sanctions.","The Guardian 2022"],["Migrant workers — 88% of the population — work in 45–55°C heat with inadequate protections","Workers pay $10,000–15,000 in recruitment fees for jobs paying $275 per month. Qatar banned daytime outdoor work in summer — enforcement is minimal.","ILO 2026"],["The kafala system legally ties workers to employers who hold their passports","Reforms announced in 2020 have been partially implemented. Workers who escape abusive employers face deportation. Domestic workers remain entirely outside labor law.","Human Rights Watch 2026"]],
+["Asia","🇸🇦","Saudi Arabia","Riyadh",24.69,46.72,["19 million Yemenis face starvation as Saudi-led bombing destroyed the food system","The Saudi coalition blockaded Yemen's ports and bombed agricultural infrastructure from 2015–2022. 377,000 people died of conflict and related causes. No accountability followed.","UN 2026"],["12 million migrant workers are under the kafala system with no right to form unions","Domestic workers face documented imprisonment, starvation and abuse with no legal recourse. Workers cannot change employers without sponsor permission.","Human Rights Watch 2026"],["Women gained the right to drive in 2018 — but guardianship laws still control their lives","Women's rights activists who campaigned for the driving law remain imprisoned. Male permission is still required for marriage and some travel.","Amnesty International 2026"]],
+["Asia","🇱🇰","Sri Lanka","Colombo",6.93,79.86,["Sri Lanka's 2022 economic collapse — the worst since independence — impoverished 2 million people","Foreign exchange reserves fell to zero. The country defaulted on $51 billion in debt. The president fled after protesters stormed his house.","World Bank 2026"],["25% of Sri Lankans now live below the poverty line — up from 13% in 2021","The number doubled in 18 months. IMF austerity cuts to healthcare and education are affecting the most vulnerable. Rural communities have returned to subsistence farming.","World Bank 2026"],["The Tamil community in the north remains under military occupation 16 years after the war","The military holds land in the Northern Province. Families of the estimated 20,000 who disappeared have no accountability mechanism.","Human Rights Watch 2026"]],
+["Asia","🇸🇾","Syria","Damascus",33.51,36.29,["16.5 million Syrians need humanitarian assistance — 14 years into the conflict","90% of Syrians live below the poverty line. 6.8 million remain internally displaced. 5.5 million are registered refugees in Turkey, Lebanon and Jordan.","UN OCHA 2026"],["The Assad regime's fall in 2024 raised hopes — but reconstruction has not begun","1 million refugees have returned but many found their homes reduced to rubble. Aid funding covers 40% of identified needs.","UNHCR 2026"],["Chemical weapons attacks by the Assad regime destroyed communities — no accountability followed","The OPCW confirmed 17 chemical weapons attacks. The UN Security Council failed to refer cases to the ICC due to Russian and Chinese vetoes.","OPCW 2026"]],
+["Asia","🇹🇷","Turkey","Ankara",39.93,32.86,["Inflation of 65% has pushed 22 million Turks into poverty — the number doubled since 2021","The Turkish lira has lost 80% of its value since 2021. Real wages have fallen 30%. Urban poverty in Istanbul is rising faster than any European capital.","World Bank 2026"],["Turkey hosts 3.6 million Syrian refugees — the world's largest refugee population","Syrian refugees have become a political flashpoint. Anti-refugee rhetoric is mainstream. Deportations to active conflict zones are documented.","UNHCR 2026"],["The 2023 Kahramanmaraş earthquake killed 53,000 — reconstruction is 50% complete","The deadliest earthquake in Turkish history destroyed 350,000 buildings. Government corruption in construction licensing is under investigation. Many victims remain in shipping containers.","AFAD 2026"]],
+["Asia","🇦🇪","UAE","Abu Dhabi",24.47,54.37,["Migrant workers — 88% of the population — work in construction at 45°C with minimal protections","Workers who complain face deportation. Most paid $5,000–10,000 in recruitment fees for jobs paying $300–400 per month. Heat work bans are poorly enforced.","ILO 2026"],["750,000 domestic workers — primarily women — are excluded from all UAE labor law","Employers can confiscate passports, restrict movement and withhold wages with near impunity. The kafala system makes legal complaint effectively impossible.","Human Rights Watch 2026"],["The UAE hosted COP28 in Dubai while expanding oil production — 20 tonnes of carbon per person per year","The final COP28 agreement called for 'transitioning away' from fossil fuels — the weakest language proposed in the draft.","IPCC 2026"]],
+["Asia","🇻🇳","Vietnam","Hanoi",21.03,105.84,["18 million people in the Mekong Delta face displacement as the delta sinks 3cm per year","Salt water intrusion destroys rice crops annually. By 2050, 12% of Vietnam's population may be displaced by a combination of sinking land and rising seas.","World Bank 2026"],["2.7 million garment workers earn $240 per month — organizing is illegal","Vietnam produces clothes for Nike, Adidas and Uniqlo. The minimum wage has not kept pace with inflation. Workers who organize face dismissal and criminal prosecution.","ILO 2026"],["Agent Orange — used by the US in the Vietnam War — still causes birth defects in 2026","4 million Vietnamese were exposed. An estimated 3 million suffer health effects. 150,000 children with Agent Orange-related disabilities are born each decade.","Red Cross 2026"]],
+["Asia","🇾🇪","Yemen","Sanaa",15.35,44.21,["21.6 million Yemenis — 65% of the population — need humanitarian assistance","377,000 people have died from conflict and related causes since 2015. 4.5 million are internally displaced. The Saudi coalition bombing destroyed agricultural infrastructure.","UN OCHA 2026"],["17 million face acute food insecurity — WFP has cut rations due to a $1.5 billion funding gap","In areas under Houthi control, aid is diverted and sold. Children are dying of preventable malnutrition in every province.","WFP 2026"],["2.5 million people infected with cholera — the largest outbreak in recorded history","Water infrastructure destroyed by bombing has never been repaired. 65% of health facilities are non-functional. There is one doctor per 9,000 people.","WHO 2026"]],
+
+["Europe","🇺🇦","Ukraine","Kyiv",50.45,30.52,["Russia's invasion has killed over 40,000 civilians and displaced 10 million Ukrainians","6.5 million remain internally displaced. 3.7 million have left permanently. Eastern cities have been reduced to rubble in Europe's largest conflict since World War II.","UNHCR 2026"],["40% of Ukraine's energy infrastructure destroyed — 6–12 hour daily power blackouts","5 million people have no reliable electricity. Hospitals run on generators. Heating failed in apartment blocks across Kharkiv and Zaporizhzhia through winter 2025–26.","UNDP 2026"],["15 million Ukrainians need humanitarian assistance — the largest crisis in Europe in 80 years","International military aid has sustained the resistance. Humanitarian funding covers only 42% of identified needs. Mental health services reach less than 5% of those who need them.","UN OCHA 2026"]],
+["Europe","🇷🇺","Russia","Moscow",55.75,37.62,["1 million Russians have fled since the Ukraine invasion — the largest emigration since 1917","Educated, urban Russians opposed to the war have left for Georgia, Armenia, Serbia and the EU. The brain drain is accelerating. Those who remain face increasing repression.","Carnegie Endowment 2026"],["500,000 Russian soldiers killed or wounded in Ukraine — official figures are suppressed","The true casualty count is unknown. Families who speak publicly about sons killed in Ukraine face prosecution under anti-protest laws.","Mediazona 2026"],["20 million Russians live below the poverty line — the number has risen 15% since sanctions","Western sanctions have targeted the elite but inflation of 9% has impoverished ordinary Russians. Regional inequality is extreme.","World Bank 2026"]],
+["Europe","🇬🇧","United Kingdom","London",51.51,-0.13,["14.4 million Britons — 22% — live in poverty, including 4.2 million children","Food bank use has risen 800% in a decade. 3 million people relied on food banks in 2025. One in 10 hospital patients is malnourished on admission.","JRF 2026"],["Britain has the worst housing crisis in its recorded history — 340,000 people are homeless","1.3 million are on council house waiting lists. 150,000 children live in temporary accommodation, often a single room. Average London house costs 12 times average earnings.","Shelter 2026"],["NHS waiting lists stand at 7.5 million — 14,000 people die each year while waiting","A&E waiting times have tripled since 2012. 111,000 staff vacancies. Routine treatment waits of 18 months are now normal.","NHS 2026"]],
+["Europe","🇫🇷","France","Paris",48.85,2.35,["1 in 5 French children lives in poverty — 3 million children","France's child poverty rate has risen 8% since 2019. Food bank usage increased 30% in 2025. Child poverty is concentrated in Seine-Saint-Denis and overseas territories.","INSEE 2026"],["France's overseas territories — Martinique, Guadeloupe, Mayotte — face 40–80% poverty rates","Mayotte, France's poorest department, has a 77% poverty rate. 60% of residents are undocumented. Healthcare and housing are overwhelmed. It is French soil treated as a colony.","INSEE 2026"],["Femicide kills a woman every 3 days in France — 118 killed in 2025","Despite high-profile campaigns, conviction rates for domestic violence are under 20%. Shelters accommodate only 6% of women who need protection.","FNSF 2026"]],
+["Europe","🇩🇪","Germany","Berlin",52.52,13.41,["13.8 million Germans — 16% — live in poverty despite being Europe's largest economy","Child poverty has risen to 21%. Food bank Tafel has 2 million regular users. New recipients are being turned away in Berlin and Hamburg for the first time.","Paritätischer 2026"],["Germany faces a housing crisis — 700,000 homes short of demand","Rents in Munich and Berlin have doubled since 2016. Homelessness rose 50% between 2020 and 2025. The government's target of 400,000 new homes per year has not been met.","Destatis 2026"],["250,000 immigrants arrived in 2025 — integration funding has been cut by 30%","Germany needs 7 million workers by 2035 due to demographic decline. Integration programs — language, employment, housing — are chronically underfunded.","BAMF 2026"]],
+["Europe","🇮🇹","Italy","Rome",41.9,12.48,["5.7 million Italians live in absolute poverty — the highest in modern Italian history","Italy has the EU's second-highest youth unemployment at 24%. Emigrants: 3 million young Italians have left for Germany, UK and Switzerland in a decade.","ISTAT 2026"],["Italy's birth rate is 1.2 — one of the world's lowest","400 municipalities are projected to become ghost towns by 2040. The pension system is projected to become insolvent by 2045 without radical reform.","ISTAT 2026"],["2,500 people drowned in the Central Mediterranean in 2025","Italy's migration externalization to Tunisia and Libya means migrants are returned to documented torture and slavery.","UNHCR 2026"]],
+["Europe","🇬🇷","Greece","Athens",37.98,23.73,["11,000 refugees were left homeless after the 2020 Moria fire — conditions on Greek islands remain inhumane","New reception centers are over capacity. Refugees from Syria, Afghanistan and Congo wait years for asylum decisions.","UNHCR 2026"],["Youth unemployment is 20% — a full decade after the financial crisis","The austerity decade cut spending on health, education and social protection by 30%. The poverty rate rose from 28% to 36% — it stands at 28% today.","Eurostat 2026"],["100 bodies were found in the Evros River in 2025 — systematic pushbacks are documented","Greece has built a 40km fence and uses pushbacks, returning migrants to Turkey without processing. No Greek official has been prosecuted.","Human Rights Watch 2026"]],
+["Europe","🇵🇱","Poland","Warsaw",52.23,21.01,["Poland has received 1 million Ukrainian refugees — the largest single-country intake globally","Temporary accommodation has ended for most. Refugee unemployment is 40% due to language barriers and credential recognition issues.","UNHCR 2026"],["Democratic backsliding under PiS damaged judicial independence — restoration is incomplete","The Law and Justice party packed courts, captured state media and restricted abortion. The new government is reversing changes but faces constitutional obstacles set by the previous one.","Rule of Law Index 2026"],["Poland has lost 2.5 million working-age people to emigration since 2004","Poland has the EU's fastest-shrinking working-age population. Care for the elderly is becoming a national crisis without the workforce to staff it.","Eurostat 2026"]],
+["Europe","🇪🇸","Spain","Madrid",40.42,-3.7,["Youth unemployment stands at 28.3% — Spain's young workers are Europe's most precarious","30% of Spanish youth work on temporary contracts. 80,000 young Spaniards emigrate annually. The 'mileurista' generation — earning €1,000 per month — is the new normal.","Eurostat 2026"],["Spain has the EU's worst housing affordability crisis — rents rose 45% since 2019","180,000 evictions occurred in 2025. The homeless population is 42,000. Short-term tourist rentals have removed 300,000 homes from the long-term market.","INE 2026"],["Violence against women has killed 59 women in the first 5 months of 2026","Spain averages 14 femicides per month. Despite the Pact Against Gender Violence, frontline service funding covers only 40% of identified need.","Ministerio de Igualdad 2026"]],
+["Europe","🇵🇹","Portugal","Lisbon",38.72,-9.14,["Portugal faces the EU's worst housing crisis relative to wages — rents consumed 46% of average income","Lisbon rent has risen 60% since 2016. Short-term tourist rentals removed homes from the local market. 3,000 Lisboetas are estimated to sleep rough.","INE 2026"],["200,000 young Portuguese have emigrated in a decade — 2% of the population","Portugal has the EU's oldest population relative to its economy. The young professional exodus leaves behind an aging population without the workforce to fund pensions.","INE 2026"],["NHS waiting lists have 1.5 million patients — dentistry is unaffordable for 60% of Portuguese","Interior regions have 1 GP per 2,000 patients. Mental health services cover only 9% of those who need them.","SNS 2026"]],
+["Europe","🇷🇴","Romania","Bucharest",44.43,26.1,["Romania has the EU's highest poverty rate — 25% live in poverty, 38% face material deprivation","1 million Bulgarians have emigrated. 45% of homes have no indoor bathroom. 70% of the rural population lacks access to sewerage.","Eurostat 2026"],["Romania has the EU's highest maternal mortality rate — 18 per 100,000 births","Abortion rights restrictions mean women without means cannot access safe procedures. Rural obstetric care is critically understaffed.","WHO 2026"],["1.5 million Romanian children are at risk of poverty — EU's highest child poverty rate","Children in rural Romania attend schools without heating in winter. 25% do not complete secondary education.","Eurostat 2026"]],
+["Europe","🇸🇷","Serbia","Belgrade",44.8,20.47,["Mass protests demanding media freedom have continued for 6 months","The November 2024 station roof collapse — linked to government corruption in construction — killed 15 people. Hundreds of thousands have demonstrated in Belgrade.","Amnesty International 2026"],["Serbia is the only EU candidate country maintaining relations with Russia","Serbia has refused to sanction Russia and has not joined EU foreign policy on Ukraine. It simultaneously negotiates EU accession while blocking key democratic reforms.","ECFR 2026"],["22% of Serbs live in poverty — 90,000 young Serbs emigrate each year","Wage growth lags inflation. The informal economy employs 30% of the workforce with no social protection. Rural Serbia has near-zero economic growth.","World Bank 2026"]],
+["Europe","🇧🇾","Belarus","Minsk",53.9,27.57,["35,000 political prisoners remain imprisoned after the 2020 stolen election","Lukashenko announced 80% of the vote in a widely condemned result. Over 35,000 have been detained. Torture in detention is systematically documented by UN monitors.","Amnesty International 2026"],["500,000 Belarusians have fled the country since 2020","The professional class — doctors, lawyers, engineers — has been particularly hard hit. Those who return face arrest.","UNHCR 2026"],["Belarus hosts Russian tactical nuclear weapons — sovereignty is nominal","Lukashenko allowed Russia to use Belarusian territory to invade Ukraine in February 2022. Economic dependency on Russia means political independence is impossible.","Chatham House 2026"]],
+["Europe","🇭🇺","Hungary","Budapest",47.5,19.04,["Hungary is the most politically illiberal EU member state — press freedom ranks 67th globally","Prime Minister Orbán has systematically dismantled judicial independence and civil society. The EU has withheld €12 billion in funds over rule of law violations.","RSF 2026"],["Roma communities face 60–80% poverty rates","250,000 Roma Hungarians face systematic exclusion from education, housing and employment. Segregated schools have curricula two years behind mainstream. Life expectancy is 12 years shorter.","UNDP 2026"],["Hungary is blocking €50 billion in EU aid to Ukraine as political leverage","Orbán has maintained close ties with Putin throughout the invasion. Hungary is the only NATO member to refuse weapons transit to Ukraine.","EU Council 2026"]],
+["Europe","🇦🇱","Albania","Tirana",41.33,19.82,["Albania loses 41% of its university graduates to emigration annually","Doctors, engineers and teachers leave for Italy and Germany. The NHS in Britain employs 20,000 Albanian nurses trained at Albanian taxpayer expense.","World Bank 2026"],["27% of Albanians live below the poverty line — rural areas are at 35%","Minimum wage is €300 per month. 57% of employment is informal. Social protection covers only 22% of the poor.","Eurostat 2026"],["Albania is Europe's primary cannabis producer — €3 billion annually","Organized crime is structurally embedded in state institutions. Trafficking in persons — women sent to Italy for prostitution — generates further billions. Prosecutions are rare.","UNODC 2026"]],
+["Europe","🇲🇩","Moldova","Chișinău",47.0,28.86,["Moldova is Europe's poorest country — GNI of $5,380 per capita","30% of the population lives below the poverty line. Pensions average €120 per month. 25% of the population has emigrated, reducing the tax base for social services.","World Bank 2026"],["Transnistria — 12% of Moldova's territory — has been under Russian military control since 1992","Russian troops occupy the breakaway region in violation of international law. The Transnistrian economy is controlled by a single company closely tied to Moscow.","OSCE 2026"],["Moldova hosts 100,000 Ukrainian refugees — a massive burden for Europe's poorest state","Refugees represent 3.5% of Moldova's population. Funding covers only 50% of needs. Moldova's generosity is extraordinary given its circumstances.","UNHCR 2026"]],
+["Europe","🇧🇦","Bosnia & Herzegovina","Sarajevo",43.85,18.38,["Bosnia is the only European country where genocide was committed in living memory — Srebrenica 1995","8,000 Bosniak men and boys were executed over 4 days. Republika Srpska's leadership denies the genocide — a denial the EU has failed to sanction.","ICTY 2026"],["Youth unemployment is 38% — the highest in Europe","The ethnic division of the state creates three parallel bureaucracies that block economic reform. 50,000 young educated Bosnians leave per year.","World Bank 2026"],["The Dayton Peace Agreement froze ethnic division — it has also frozen development","Dayton created a state with 13 governments for 3.5 million people. EU integration is stalled. Republika Srpska's leader openly advocates secession.","Crisis Group 2026"]],
+["Europe","🇧🇬","Bulgaria","Sofia",42.7,23.32,["Bulgaria is the EU's poorest country — 22% live in poverty, 38% face material deprivation","Bulgaria has the EU's lowest wages and highest energy poverty rate at 30%. 1 million Bulgarians have emigrated.","Eurostat 2026"],["Bulgaria has lost 2 million people — 28% of its population — since 1989","The demographic collapse is among Europe's most severe. Rural towns have closed schools, hospitals and shops. Population will fall from 7 million to 4 million by 2060.","NSI 2026"],["Corruption is endemic — Bulgaria consistently ranks last in the EU on rule of law","The judicial system is infiltrated by organized crime. EU cohesion funds worth €20 billion have been irregularly administered over two decades.","Transparency International 2026"]],
+
+["North America","🇺🇸","United States","Washington D.C.",38.89,-77.03,["40 million Americans live in poverty — child poverty has risen 60% since 2021 benefit cuts","The expanded Child Tax Credit lifted 3 million children from poverty in 2021. Its expiration reversed those gains equally fast. Food bank usage is at its highest since the Great Depression.","CBPP 2026"],["Medicaid cuts under new legislation will remove health coverage from 8 million Americans","The CBO projects 13 million will lose coverage over 10 years. The cuts are concentrated among the working poor — those who earn too much for traditional Medicaid but cannot afford private insurance.","CBO 2026"],["Gun violence kills 45,000 Americans per year — more than any high-income country","The US has 4% of the world's population and 40% of its civilian-owned guns. Mass shootings average 1.8 per day. No federal legislation has passed since 1994.","CDC 2026"]],
+["North America","🇨🇦","Canada","Ottawa",45.42,-75.7,["1.5 million Canadians use food banks monthly — a 90% increase since 2019","Canada's housing crisis has driven food bank use to record levels. Low-income Canadians spend 50–60% of income on housing, leaving inadequate money for food.","Food Banks Canada 2026"],["34 Indigenous communities still have unsafe drinking water in 2026 — some for 25 years","The government promised to end all long-term boil water advisories by 2021. 34 remain. Canada ranks 25th in the world on Indigenous rights.","Health Canada 2026"],["Home ownership is impossible for most under-35 Canadians — prices are 14x income in Vancouver","25% of young Canadians have abandoned home ownership as a life goal. Average house price is $700,000 — in Vancouver it is $1.3 million.","CMHC 2026"]],
+["North America","🇲🇽","Mexico","Mexico City",19.43,-99.13,["Cartel violence killed 31,000 Mexicans in 2025 — the highest since records began","Mexico's homicide rate is 26 per 100,000. 90% of murders are never prosecuted. 10 journalists were murdered in 2025 — making Mexico the most dangerous country for press freedom.","Insight Crime 2026"],["36.3% of Mexicans live in poverty — 46 million people — despite a trillion-dollar economy","The top 10% earns 28 times the bottom 10%. Southern states — Chiapas, Oaxaca, Guerrero — have poverty rates of 60–75%.","CONEVAL 2026"],["600,000 Mexicans were displaced by violence in 2025 — Latin America's largest internal displacement","Cartel territorial conflicts force entire communities to flee. The government has no systematic response program.","IDMC 2026"]],
+["North America","🇭🇹","Haiti","Port-au-Prince",18.54,-72.34,["Gang violence controls 85% of Port-au-Prince — 5 million face famine conditions","Haiti has no functioning government. Gangs control more territory than the state. 362,000 people are internally displaced within the capital alone.","UN OCHA 2026"],["Haiti is experiencing a cholera, gang violence and hunger crisis simultaneously","The cholera outbreak restarted in 2022. Healthcare facilities are attacked by gangs. Doctors Without Borders has evacuated multiple hospitals due to direct attacks.","MSF 2026"],["59% of Haitians live below the poverty line — no food security exists for the bottom 40%","Haiti was the first Black republic (1804). It was forced to pay reparations to France until 1947 — equivalent to $21 billion today — for the 'loss' of its enslaved people.","World Bank 2026"]],
+["North America","🇨🇺","Cuba","Havana",23.13,-82.38,["Cuba faces its worst economic crisis since the 1990s — blackouts last 20 hours daily","Fuel is unavailable. Food shortages are severe. 250,000 Cubans fled to the US in 2025 — the largest single-year exodus in Cuban history.","Reuters 2026"],["185 countries voted to lift the US embargo in 2025 — only the US and Israel voted against","The embargo has cost Cuba an estimated $130 billion over 60 years. It prevents Cuba from accessing international financial markets and medicines.","UNGA 2026"],["40% of Cuba's population lives in poverty — up from 9% in 2020","The collapse of tourism during COVID and tightening of sanctions created a catastrophic economic spiral. The peso has lost 90% of its value since 2020.","ECLAC 2026"]],
+["North America","🇬🇹","Guatemala","Guatemala City",14.64,-90.51,["Latin America's highest child stunting rate — 46.5% of children under five","Children in indigenous Maya communities have an 80% stunting rate. Guatemala is the 6th most food insecure country in the world despite fertile, productive land.","WFP 2026"],["40% of Guatemalans live in extreme poverty — 61% of indigenous Guatemalans","Land has been concentrated among 2% of the population since the colonial era. The Maya majority — 60% of the country — has been systematically excluded from land, education and political power.","World Bank 2026"],["500,000 Guatemalans attempted to reach the US in 2025 — 30% were children","Gangs control 40% of territory. Climate-driven drought has destroyed subsistence crops in the dry corridor for 7 consecutive years. The combination of violence, hunger and climate makes staying untenable.","UNHCR 2026"]],
+["North America","🇭🇳","Honduras","Tegucigalpa",14.09,-87.21,["Honduras has one of the world's highest homicide rates — 31.3 per 100,000","MS-13 and Barrio 18 control 22 of 30 departments. 95% of murders go unsolved. Small business owners pay extortion averaging 30% of revenues.","UNODC 2026"],["66% of Hondurans live in poverty — the second highest rate in Central America","Average income is $2,700 per year. Honduras exports $4.3 billion in goods annually — primarily textiles, coffee and palm oil — but wealth accumulates among a narrow elite.","World Bank 2026"],["Hurricane Eta and Iota in 2020 displaced 4.5 million — reconstruction is 30% complete","Honduras is one of the world's most climate-vulnerable nations. Slow reconstruction has been compounded by corruption and emigration of construction workers.","CEPAL 2026"]],
+["North America","🇸🇻","El Salvador","San Salvador",13.69,-89.19,["Bukele's crackdown has imprisoned 80,000 people — due process is suspended","El Salvador's homicide rate fell from 52 to 2 per 100,000. But 80,000 people are in detention camps without charges, trials or lawyers. Innocent people are routinely imprisoned.","Human Rights Watch 2026"],["30% of Salvadorans live in poverty — 70% of remittances come from the US","Trump administration deportations have reduced remittances by $400 million — directly increasing poverty. El Salvador's economy cannot survive without its diaspora.","World Bank 2026"],["Bitcoin as legal tender has been a failed experiment — the IMF required its abandonment as a loan condition","El Salvador's Bitcoin adoption cost the government $60 million. Less than 20% of businesses ever accepted it. A $1.4 billion IMF loan required reversing the mandate.","IMF 2026"]],
+["North America","🇯🇲","Jamaica","Kingston",18.0,-76.79,["Jamaica has one of the world's highest murder rates — 52 per 100,000","70% of murders are gang-related. 90% of murders go unsolved. The Garrison communities of West Kingston have been under states of emergency for 5 years with no resolution.","JCF 2026"],["Reparations for slavery have become a central political demand — CARICOM cites $10 trillion owed","Britain extracted an estimated $34 trillion from Jamaica during 300 years of slavery and colonial rule. The British government offered instead to fund a prison building program.","CARICOM 2026"],["Climate change is threatening Jamaica's $4 billion tourism industry and food security","Coral reef bleaching has destroyed 50% of reef coverage that protected coastlines and sustained fisheries. Hurricanes are intensifying.","IPCC 2026"]],
+["North America","🇵🇦","Panama","Panama City",8.99,-79.52,["The Darién Gap has become the world's most dangerous migration route — 500,000 crossed in 2025","Migrants cross 60 miles of jungle with no infrastructure. Sexual assault of women and children is routine. An estimated 900 died making the crossing in 2025.","UNHCR 2026"],["The 2024 closure of the Cobre Panamá copper mine has created an economic crisis","The mine generated 5% of GDP. Its closure after mass protests over corruption and environmental damage removed $1.5 billion from the economy overnight.","World Bank 2026"],["Panama has extreme inequality — the Panama Papers revealed $11.5 trillion hidden offshore","The architects of the global offshore secrecy system faced no meaningful legal consequences in Panama. Gini coefficient stands at 49.","OCCRP 2026"]],
+["North America","🇳🇮","Nicaragua","Managua",12.13,-86.28,["Nicaragua is a dictatorship — Ortega has imprisoned bishops, closed 3,000 NGOs and exiled Catholic orders","All opposition parties are banned. The Catholic Church has been systematically persecuted. 600,000 Nicaraguans have been forced into exile since 2018.","Human Rights Watch 2026"],["Ortega has stripped citizenship from exiles — including Nobel laureate Gioconda Belli","The diaspora sustains 20% of GDP through remittances. The Ortega regime extracts this while denying the rights of those who send it.","IACHR 2026"],["30% of Nicaraguans live below the poverty line — rural areas at 50%","Sandinista cooperatives control agricultural credit. Independent farmers cannot access capital. Economic activity requires political loyalty.","World Bank 2026"]],
+["North America","🇹🇹","Trinidad & Tobago","Port of Spain",10.65,-61.52,["Trinidad has Latin America's second highest murder rate — 39 per 100,000","Gang violence linked to the cocaine trade kills 600 Trinidadians annually. Courts convict fewer than 5% of murder suspects. Witnesses are killed before they can testify.","UNODC 2026"],["Oil revenues are declining — the economy has not diversified in 60 years","Trinidad's oil and gas reserves will be substantially exhausted by 2040. Unlike Norway, no sovereign wealth fund was built. There is no economic alternative to hydrocarbons.","World Bank 2026"],["30,000 Venezuelan refugees have arrived with no legal status","Venezuela is 11 km away. Refugees who arrive by boat cannot work, access healthcare or enroll children in school. Trinidad has refused to sign the Refugee Convention.","UNHCR 2026"]],
+
+["Oceania","🇦🇺","Australia","Canberra",-35.31,149.12,["Australia has the world's worst record on Indigenous incarceration — Aboriginal people are 3% of the population but 30% of prisoners","Aboriginal life expectancy is 8 years shorter than non-Indigenous Australians. 20,000 Aboriginal children are in out-of-home care — child removal rates have not fallen since the Stolen Generations.","AHRC 2026"],["3.3 million Australians live in poverty — housing costs are the primary driver","Sydney house prices average $1.4 million — 14 times median income. 100,000 Australians sleep rough or in emergency housing nightly.","ACOSS 2026"],["2025 was Australia's hottest year ever recorded — extreme heat days have tripled since 1960","The Great Barrier Reef has experienced its sixth mass bleaching event since 2016. Climate costs to agriculture exceeded $3.5 billion in 2025.","Bureau of Meteorology 2026"]],
+["Oceania","🇳🇿","New Zealand","Wellington",-41.29,174.78,["Child poverty affects 200,000 New Zealand children — Maori children at 38%","Maori children are 3 times more likely to live in poverty than Pakeha peers. They are 6 times more likely to be in state care. The child poverty target set in 2018 has not been met.","Child Poverty Action Group 2026"],["New Zealand has the OECD's highest rate of youth suicide — 15.5 per 100,000","Maori youth suicide rates are 2.5 times the national average. Mental health services have 4-year wait times. Psychiatric beds have been cut 40% in a decade.","MoH 2026"],["The housing crisis has made New Zealand the least affordable developed nation for housing","House prices average 9 times income nationally. Homelessness is at a record high. 2,000 people sleep in cars or on the street in a country that considers itself egalitarian.","Stats NZ 2026"]],
+["Oceania","🇫🇯","Fiji","Suva",-18.14,178.44,["Climate change is displacing Fijian villages — 40 have been relocated, 800 more are at risk","Sea level rise, cyclone intensity and coastal erosion are making traditional village sites uninhabitable. Communities lose ancestral land permanently.","UNHCR 2026"],["30% of Fijians live in poverty — rural and maritime communities are at 50%","Sugar, tourism and remittances are Fiji's primary income sources — all are climate-vulnerable. Food insecurity is rising in communities that have lost land to cyclone damage.","ADB 2026"],["Cyclone Winston (2016) and Yasa (2020) each caused damage exceeding 20% of GDP","Fiji averages one category 4+ cyclone every 3 years. Insurance penetration is under 5%. Reconstruction was incomplete before each new cyclone season began.","World Bank 2026"]],
+["Oceania","🇵🇬","Papua New Guinea","Port Moresby",-9.44,147.18,["70% of women in Papua New Guinea have experienced physical or sexual violence","One of the most dangerous places on earth to be a woman. Sorcery-accusation torture and murder of women continue. Femicide is not even measured as a distinct category.","UN Women 2026"],["37% of Papua New Guineans have no access to clean water — the worst rate in the Pacific","Despite being one of the world's most ecologically rich nations, Papua New Guinea has among the lowest human development indicators in the Asia-Pacific region.","WHO 2026"],["Tribal warfare killed 150 people in the Southern Highlands in February 2024","Inter-tribal conflicts over land and resources are escalating as population pressure and climate stress increase competition for scarce resources.","ACLED 2026"]],
+["Oceania","🇻🇺","Vanuatu","Port Vila",-17.73,168.32,["Vanuatu ranks as the world's most disaster-prone country — hit by multiple cyclones annually","Cyclones Judy and Kevin struck within 48 hours of each other in 2023 — a catastrophic double impact. 80% of the population was affected. Reconstruction was incomplete before 2024.","UNICEF 2026"],["A 7.3 magnitude earthquake destroyed central Port Vila in December 2024","The earthquake killed 14 and destroyed the commercial center. Foreign embassies evacuated. Reconstruction has barely begun — Vanuatu lacks financial reserves to rebuild without foreign aid.","UN OCHA 2026"],["Vanuatu has no income tax, no capital gains tax — and therefore cannot fund public services","The government relies entirely on tourism and international aid. Education and healthcare are largely provided by churches. Climate adaptation is impossible without foreign funding.","World Bank 2026"]],
+["Oceania","🇹🇻","Tuvalu","Funafuti",-8.52,179.2,["Tuvalu will cease to exist — the entire nation is relocating to Australia under a 2023 agreement","Australia agreed to accept all 11,000 Tuvaluans over coming decades. The islands will continue to exist legally as a state for EEZ and fishing rights even after they are submerged.","Australia MoFA 2026"],["Tuvalu's maximum elevation is 4.5 meters — storm surges already flood 60% of the islands","Freshwater contamination from surges means residents rely on rainwater. Traditional crops cannot grow in salt-contaminated soil. The island is becoming uninhabitable.","SPREP 2026"],["Tuvalu contributes 0.000013% of global emissions — it faces extinction from their consequences","The nation has called for a fossil fuel non-proliferation treaty at every UN climate conference. It has no leverage to compel action. It will be the first country erased by climate change.","UN 2026"]],
+["Oceania","🇰🇮","Kiribati","South Tarawa",1.33,173.0,["Kiribati will be entirely submerged — the government has already purchased land in Fiji","The average elevation is 2 meters. No island is safe from projected sea level rise. Managed migration is being planned as the only alternative to catastrophic displacement.","IPCC 2026"],["22% of the population faces food insecurity as fishing stocks collapse","Rising ocean temperatures have destroyed the reefs that sustained local fisheries. The tuna quota — Kiribati's primary income — is threatened by warming seas.","FAO 2026"],["Kiribati contributes 0.001% of global emissions — it will cease to exist from their consequences","The islands have been inhabited for 3,500 years. The current generation may be the last to live there.","SPREP 2026"]],
+["Oceania","🇲🇭","Marshall Islands","Majuro",7.09,171.38,["The Marshall Islands will be uninhabitable within 30 years — sea level rise and saltwater intrusion","Groundwater will become fully saline by 2050. Food crops are dying. The government is discussing full national relocation to the US.","IPCC 2026"],["Nuclear testing legacy — cancers and birth defects persist in 2026","The US conducted 67 nuclear tests on Bikini and Enewetak atolls between 1946 and 1958. Radiation contamination means these islands remain uninhabitable. Compensation has been inadequate.","RMI Nuclear Claims Tribunal 2026"],["40% of Marshall Islanders live in poverty — the economy depends on US Compact payments","The Nuclear Nomads of Bikini Atoll were promised they could return in the 1960s. The island remains radioactive. The community lives in exile.","World Bank 2026"]],
+
+["South America","🇦🇷","Argentina","Buenos Aires",-34.61,-58.38,["Argentina's economic collapse has pushed 54% of the population into poverty","Inflation exceeded 211% in 2023. Milei's austerity has cut social spending by 30% while poverty rose from 40% to 54% in 6 months of 2024.","INDEC 2026"],["Hunger affects 9 million Argentines — community kitchens serve 4 million meals daily","Argentina produces food for 400 million people — yet 9 million Argentines cannot afford to eat adequately. The paradox defines the crisis.","UNICEF 2026"],["Mental health crisis — suicide rates among young Argentines have risen 40% since 2021","Economic despair is driving a mental health emergency. 70% of Argentines report anxiety or depression. Public mental health services have been cut under austerity.","CONICET 2026"]],
+["South America","🇧🇴","Bolivia","Sucre",-19.04,-65.26,["35% of Bolivians live below the poverty line — indigenous communities at 50%","Bolivia has the largest indigenous population in South America at 62%. Despite constitutional protections, land rights are systematically violated by agribusiness.","World Bank 2026"],["Bolivia's lithium — the world's largest reserve — generates wealth that bypasses local communities","Bolivia holds 24% of global lithium reserves. Electric vehicle manufacturers depend on Bolivian lithium. Indigenous communities near the Salar de Uyuni receive no royalties.","ECLAC 2026"],["Child labor affects 750,000 Bolivian children — Bolivia lowered the legal working age to 10","Bolivia has the world's youngest legal working age. Child miners work in Potosi's silver mines in conditions unchanged since the colonial era.","ILO 2026"]],
+["South America","🇧🇷","Brazil","Brasília",-15.78,-47.93,["33 million Brazilians face food insecurity — the number doubled between 2020 and 2022","The pandemic reversed 15 years of poverty reduction. Despite Lula's restoration of social programs, the bottom quintile's income remains below 2014 levels.","PENSSAN 2026"],["Brazil has the world's fourth highest femicide rate — a woman is murdered every 6 hours","1,437 women were killed in 2025. Most are Black women, killed by intimate partners. 80% of femicide cases do not result in conviction.","FBSP 2026"],["Deforestation has destroyed 26% of the Amazon — scientists warn of an irreversible tipping point","At 25% deforestation, the Amazon may transition from rainforest to savanna — a process that cannot be reversed. This would release 50 billion tonnes of carbon.","INPE 2026"]],
+["South America","🇨🇱","Chile","Santiago",-33.46,-70.65,["Chile's 2019 social uprising revealed extreme inequality hidden by strong economic growth","Chile is one of Latin America's wealthiest nations — but the Gini coefficient is 44. The education system is the most segregated in the OECD. Water has been privatized — the only country where this is constitutional.","World Bank 2026"],["Chile is experiencing a 'mega-drought' — the worst in 1,000 years","Santiago, home to 40% of Chile's population, faces water rationing for the first time in history. Agriculture in the Central Valley has lost 50% of irrigation water to climate change.","DGA 2026"],["Two attempts to replace Pinochet's 1980 constitution have failed — political polarization is severe","Chile remains governed by a constitution designed by a dictatorship. The left's version was rejected in 2022, the right's in 2023.","La Tercera 2026"]],
+["South America","🇨🇴","Colombia","Bogotá",4.71,-74.07,["6.8 million Venezuelans have fled to Colombia — the largest refugee crisis in the Americas","Colombia has been extraordinary in its generosity — granting 10-year humanitarian status to all Venezuelans. But integration into public services is overwhelmed.","UNHCR 2026"],["Social leaders fighting for land rights are murdered at 2 per week","Armed groups — FARC dissidents, ELN, cartels — control 30% of Colombian territory. 35 former FARC commanders have been assassinated since the peace deal.","Insight Crime 2026"],["10 million Colombians live in poverty — the figure has not changed since the pandemic","Afro-Colombian and indigenous communities face poverty rates of 50–70%. Rural coca farmers have no legal alternative livelihood.","DANE 2026"]],
+["South America","🇪🇨","Ecuador","Quito",-0.23,-78.52,["Ecuador has become one of Latin America's most dangerous countries — 8,000 killed in 2024","Ecuador was one of Latin America's safest nations in 2018. By 2024 it had the continent's highest homicide rate at 46 per 100,000. Prison massacres have killed 400 inmates since 2021.","Insight Crime 2026"],["The assassination of presidential candidate Fernando Villavicencio in 2023 marked a turning point","Politicians, judges and journalists receive death threats daily. Many have fled. A state of emergency has been declared 8 times in 3 years.","Crisis Group 2026"],["25% of Ecuadorians live in poverty — indigenous communities face 50% rates","Ecuador is one of the world's top copper and gold exporters. Workers on banana plantations face pesticides that cause high rates of cancer and birth defects.","World Bank 2026"]],
+["South America","🇵🇾","Paraguay","Asunción",-25.28,-57.65,["Soy monoculture controlled by Brazilian agribusiness has displaced 170,000 small farmers in 20 years","Paraguay is the world's fourth largest soybean exporter. Land concentration has driven rural people off ancestral land with minimal compensation.","World Bank 2026"],["Paraguay is a narco-state — cocaine trafficking generates $2 billion annually","The Colorado Party has governed for 72 of the past 76 years. Drug trafficking and land grabbing have corrupted institutions at every level.","UNODC 2026"],["The Gran Chaco — one of the world's most important dry forests — is losing 400,000 hectares per year","The fastest deforestation rate globally. Conversion to cattle ranching for beef export to Europe has destroyed communities and ecosystems with no accountability.","Global Forest Watch 2026"]],
+["South America","🇵🇪","Peru","Lima",-12.05,-77.05,["Peru has had 6 presidents in 7 years — institutional collapse is complete","President Boluarte's suppression of protests killed 49 demonstrators. Congress impeaches presidents as a political tool. No institution is trusted by a majority of Peruvians.","Crisis Group 2026"],["Illegal gold mining is destroying the Amazon and poisoning communities with mercury","70 tonnes of mercury are released into Peruvian rivers annually. Mercury poisoning causes neurological damage in children. Fish — the primary protein for Amazonian communities — is contaminated.","SPDA 2026"],["28% of Peruvians live in poverty — indigenous communities in the highlands and Amazon at 50%","Mining revenues do not reach mining communities. They face pollution, water scarcity and respiratory disease from extraction operations on their land.","World Bank 2026"]],
+["South America","🇻🇪","Venezuela","Caracas",10.49,-66.88,["7.7 million Venezuelans have fled — the largest displacement crisis in the Americas","Venezuela's population has shrunk 25% since 2015. 84% of those who remain live in poverty. The healthcare system has collapsed.","UNHCR 2026"],["Annual inflation was 189% in 2025 — the tenth consecutive year of hyperinflation","The bolivar has been redenominated 3 times, removing 14 zeros. Average monthly wages are equivalent to $6. 96% of Venezuelans cannot afford an adequate diet.","ECLAC 2026"],["Maduro stole the 2024 election — the opposition won by a documented 30-point margin","Venezuela's electoral authority announced Maduro won without releasing voting tallies. Leaked tallies showed opposition candidate González won with 67% of the vote.","Carter Center 2026"]],
+["South America","🇺🇾","Uruguay","Montevideo",-34.9,-56.19,["Uruguay has Latin America's lowest poverty rate at 10% — but inequality is rising","Uruguay is the regional outlier — universal healthcare, free education, legal cannabis and same-sex marriage. Yet the bottom quintile has gained little in 10 years.","INE 2026"],["Uruguay has Latin America's highest suicide rate — 18.5 per 100,000","Male suicides in rural areas are particularly high. Cultural taboo around mental illness persists. Demand for mental health services far exceeds public provision.","MSP 2026"],["Climate-driven drought in 2023 contaminated Montevideo's water supply for 2 months","The worst drought in 74 years forced the water system to draw from saltwater. The incident revealed aging infrastructure not designed for climate extremes.","OSE 2026"]],
+["South America","🇬🇾","Guyana","Georgetown",6.8,-58.16,["Guyana is the world's fastest growing economy — oil revenues have not reached the poor","Oil production began in 2019. GDP grew 57% in 2022. Yet 48% of Guyanese live in poverty. Revenue sharing with ExxonMobil leaves the government a fraction of total earnings.","World Bank 2026"],["The coast — home to 90% of the population — is below sea level and dependent on colonial-era dikes","Sea level rise and increased storm intensity are making the dike system inadequate. $1 billion in repairs are needed. Oil wealth has not been directed to this existential infrastructure.","UNDP 2026"],["Indigenous Amerindians in the interior face land theft from mining and logging concessions","Free, prior and informed consent exists in law but is systematically violated in practice. Communities have no meaningful legal recourse.","Amnesty International 2026"]],
+["South America","🇸🇷","Suriname","Paramaribo",5.87,-55.17,["Suriname has the world's highest deforestation rate for a forested country","Suriname is 93% forest — one of the most intact in the world. Illegal gold mining by Brazilian garimpeiros is rapidly expanding. Government lacks capacity to enforce protected areas.","Global Forest Watch 2026"],["Indigenous and Maroon communities in the interior are excluded from all public services","The interior population — descendants of escaped enslaved people and indigenous peoples — has no reliable healthcare, education or legal system. Malaria and Chagas disease are endemic.","PAHO 2026"],["17% of Surinamers live in poverty — the currency has lost 80% of its value since 2020","Suriname defaulted on its debt in 2020. Offshore oil reserves discovered in 2020 may eventually change this — but production will not begin until 2028.","IMF 2026"]],
 ];
 
-/* ── STATE ── */
 let activeContinent = 'All';
 let searchTerm = '';
-const wCache = {}, nCache = {}, iCache = {};
+const wCache = {};
 
-/* ── MODAL ── */
-function openModal(){
-  document.getElementById('modalOverlay').classList.add('open');
-  setTimeout(()=>document.getElementById('modalKeyInput').focus(),300);
-}
-function closeModal(){
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-document.getElementById('modalOverlay').addEventListener('click',function(e){
-  if(e.target===this) closeModal();
-});
-
-function activateKey(){
-  const val = document.getElementById('modalKeyInput').value.trim();
-  const status = document.getElementById('modalStatus');
-  if(!val || !val.startsWith('AIza')){
-    status.textContent = '⚠️ Please enter a valid key starting with AIza…';
-    status.className = 'modal-status err';
-    return;
-  }
-  GEMINI_KEY = val;
-  localStorage.setItem('ftw_gemini_key', val);
-  status.textContent = '✓ Activated! Flip any tile to load live news.';
-  status.className = 'modal-status ok';
-  updateNavKeyBtn();
-  setTimeout(closeModal, 1500);
-}
-
-function updateNavKeyBtn(){
-  const btn = document.getElementById('navKeyBtn');
-  if(GEMINI_KEY){
-    btn.classList.add('active');
-    btn.innerHTML = '✓ <span>Key Active</span>';
-  }
-}
-
-if(GEMINI_KEY) updateNavKeyBtn();
-
-/* ── WEATHER ── */
 async function getWeather(lat,lon,key){
   if(wCache[key]) return wCache[key];
   try{
     const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=celsius`);
     const d = await r.json();
-    const t = Math.round(d.current_weather.temperature);
-    wCache[key] = t+'°C';
+    wCache[key] = Math.round(d.current_weather.temperature)+'°C';
   }catch(e){ wCache[key]='--°C' }
   return wCache[key];
 }
 
-/* ── IST TIME ── */
 function getIST(){
   return new Date().toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:false})+' IST';
 }
 
-/* ── GEMINI ── */
-async function fetchNews(country){
-  if(nCache[country]) return nCache[country];
-  if(!GEMINI_KEY) return null;
-  const prompt = `Give exactly 3 current news headlines about ${country} from reliable sources like BBC, Reuters, AP, Al Jazeera. Respond ONLY with a JSON array: [{"h":"headline in max 12 words","s":"Source Name"},{"h":"...","s":"..."},{"h":"...","s":"..."}]. No other text.`;
-  try{
-    const r = await fetch(`${GEMINI_URL}?key=${GEMINI_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.2,maxOutputTokens:350}})});
-    const d = await r.json();
-    if(d.error) throw new Error(d.error.message);
-    let txt = d.candidates[0].content.parts[0].text.trim().replace(/```json|```/g,'').trim();
-    nCache[country] = JSON.parse(txt);
-    return nCache[country];
-  }catch(e){ return 'error' }
-}
-
-async function fetchInfo(country){
-  if(iCache[country]) return iCache[country];
-  if(!GEMINI_KEY) return null;
-  const prompt = `Key facts about ${country}. ONLY JSON: {"lang":"main languages","rel":"main religion","cli":"climate in 6 words","pop":"population e.g. 52M","fact":"1 fascinating fact in 12 words"}. No other text.`;
-  try{
-    const r = await fetch(`${GEMINI_URL}?key=${GEMINI_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.2,maxOutputTokens:250}})});
-    const d = await r.json();
-    if(d.error) throw new Error(d.error.message);
-    let txt = d.candidates[0].content.parts[0].text.trim().replace(/```json|```/g,'').trim();
-    iCache[country] = JSON.parse(txt);
-    return iCache[country];
-  }catch(e){ return 'error' }
-}
-
-/* ── BUILD TILE ── */
-function uid(name){ return name.replace(/[^a-zA-Z]/g,'_') }
+function uid(n){ return n.replace(/[^a-zA-Z]/g,'_') }
 
 function buildTile(data){
-  const [continent,flag,name,capital,lat,lon] = data;
+  const [continent,flag,name,capital,lat,lon,...news] = data;
   const id = uid(name);
   const col = CONT_COLOR[continent]||'#c9a84c';
+  const bgClass = CONT_BG[continent]||'bg-asia';
+
+  const newsHTML = news.length ? news.map(([hl,stat,src])=>`
+    <div class="news-item">
+      <div class="news-headline">${hl}</div>
+      <div class="news-stat">${stat}</div>
+      <div class="news-source">${src}</div>
+    </div>`).join('') : `<div class="no-news">No recent reports available.</div>`;
 
   const wrap = document.createElement('div');
   wrap.className = 'tile-wrap';
   wrap.id = 'tw_'+id;
-
   wrap.innerHTML = `
     <div class="tile-inner">
-      <div class="tile-front">
-        <div class="tile-top-row">
-          <div class="tile-flag">${flag}</div>
-          <div class="tile-live">
-            <div class="tile-temp" id="tp_${id}">…°C</div>
-            <div class="tile-time" id="ti_${id}">--:-- IST</div>
+      <div class="tile-front ${bgClass}">
+        <div class="landscape-overlay"></div>
+        <div class="tile-front-content">
+          <div class="tile-top">
+            <div class="tile-flag">${flag}</div>
+            <div class="tile-live">
+              <div class="tile-temp" id="tp_${id}">…</div>
+              <div class="tile-time" id="ti_${id}">--:-- IST</div>
+            </div>
+          </div>
+          <div class="tile-bottom">
+            <div class="tile-tag" style="color:${col};border-color:${col}40;background:${col}15">${continent}</div>
+            <div class="tile-country">${name}</div>
+            <div class="tile-capital">${capital}</div>
+            <div class="tile-flip-hint">
+              <button class="flip-btn" onclick="doFlip(event,'${id}')">Read the news ▸</button>
+            </div>
           </div>
         </div>
-        <div style="margin-top:auto">
-          <div class="tile-country">${name}</div>
-          <div class="tile-capital">${capital}</div>
-        </div>
-        <div class="tile-actions">
-          <button class="tile-btn" onclick="doFlipInfo(event,'${id}','${name}')"><span class="arr">◄</span> Info</button>
-          <button class="tile-btn" onclick="doFlipNews(event,'${id}','${name}')">News <span class="arr">►</span></button>
-        </div>
       </div>
-
-      <div class="tile-news" id="tn_${id}">
-        <div class="face-hdr">
-          <span class="face-lbl" style="color:${col}">📰 ${name}</span>
-          <button class="face-back" onclick="doFlipBack(event,'${id}')">✕ back</button>
+      <div class="tile-back">
+        <div class="back-hdr">
+          <div>
+            <div class="back-country">${flag} ${name}</div>
+            <div class="back-label" style="color:${col}">What people need · ${UPDATED}</div>
+          </div>
+          <button class="back-close" onclick="doFlipBack(event,'${id}')">✕ back</button>
         </div>
-        <div class="f-loading" id="nl_${id}"><div class="ldots"><div class="ldot"></div><div class="ldot"></div><div class="ldot"></div></div><div class="ltxt">Fetching news…</div></div>
-        <div class="n-items" id="ni_${id}" style="display:none"></div>
-        <div class="f-msg" id="ne_${id}" style="display:none"></div>
-      </div>
-
-      <div class="tile-info" id="ti2_${id}">
-        <div class="face-hdr">
-          <span class="face-lbl" style="color:${col}">🌍 ${name}</span>
-          <button class="face-back" onclick="doFlipBack(event,'${id}')">✕ back</button>
+        <div class="news-list">${newsHTML}</div>
+        <div class="back-footer">
+          <div class="back-updated">Curated by MPL · ${UPDATED}</div>
+          <div class="back-flag">${flag}</div>
         </div>
-        <div class="f-loading" id="il_${id}"><div class="ldots"><div class="ldot"></div><div class="ldot"></div><div class="ldot"></div></div><div class="ltxt">Loading facts…</div></div>
-        <div class="i-items" id="ii_${id}" style="display:none"></div>
-        <div class="f-msg" id="ie_${id}" style="display:none"></div>
       </div>
     </div>`;
 
@@ -628,82 +415,14 @@ function buildTile(data){
   return wrap;
 }
 
-/* ── FLIP HANDLERS ── */
-function doFlipNews(e,id,name){
-  e.stopPropagation();
-  const w = document.getElementById('tw_'+id);
-  if(!w) return;
-  w.classList.remove('flipped-info');
-  w.classList.add('flipped-news');
-  loadNews(id,name);
-}
-function doFlipInfo(e,id,name){
-  e.stopPropagation();
-  const w = document.getElementById('tw_'+id);
-  if(!w) return;
-  w.classList.remove('flipped-news');
-  w.classList.add('flipped-info');
-  loadInfo(id,name);
-}
-function doFlipBack(e,id){
-  e.stopPropagation();
-  const w = document.getElementById('tw_'+id);
-  if(!w) return;
-  w.classList.remove('flipped-news','flipped-info');
-}
+function doFlip(e,id){ e.stopPropagation(); const w=document.getElementById('tw_'+id); if(w) w.classList.toggle('flipped') }
+function doFlipBack(e,id){ e.stopPropagation(); const w=document.getElementById('tw_'+id); if(w) w.classList.remove('flipped') }
 
-/* ── LOAD CONTENT ── */
-async function loadNews(id,name){
-  const nl=document.getElementById('nl_'+id),ni=document.getElementById('ni_'+id),ne=document.getElementById('ne_'+id);
-  if(!nl||ni.style.display==='flex'||ne.style.display==='flex') return;
-  if(!GEMINI_KEY){
-    nl.style.display='none'; ne.style.display='flex';
-    ne.innerHTML='🔑 <span style="cursor:pointer;color:var(--gold)" onclick="openModal()">Add your free Gemini API key</span> to load live news.';
-    return;
-  }
-  nl.style.display='flex'; ni.style.display='none'; ne.style.display='none';
-  const res = await fetchNews(name);
-  nl.style.display='none';
-  if(!res||res==='error'){
-    ne.style.display='flex';
-    ne.innerHTML=res==='error'?'⚠️ Could not load news. Check your API key.':'🔑 <span style="cursor:pointer;color:var(--gold)" onclick="openModal()">Add API key</span> to see news.';
-    return;
-  }
-  ni.innerHTML=res.map(x=>`<div class="n-item"><span class="n-dot">▸</span><div><div>${x.h}</div><div class="n-src">— ${x.s}</div></div></div>`).join('');
-  ni.style.display='flex';
-}
-
-async function loadInfo(id,name){
-  const il=document.getElementById('il_'+id),ii=document.getElementById('ii_'+id),ie=document.getElementById('ie_'+id);
-  if(!il||ii.style.display==='flex'||ie.style.display==='flex') return;
-  if(!GEMINI_KEY){
-    il.style.display='none'; ie.style.display='flex';
-    ie.innerHTML='🔑 <span style="cursor:pointer;color:var(--gold)" onclick="openModal()">Add your free Gemini API key</span> to load country facts.';
-    return;
-  }
-  il.style.display='flex'; ii.style.display='none'; ie.style.display='none';
-  const res = await fetchInfo(name);
-  il.style.display='none';
-  if(!res||res==='error'){
-    ie.style.display='flex';
-    ie.innerHTML=res==='error'?'⚠️ Could not load facts. Check your API key.':'🔑 <span style="cursor:pointer;color:var(--gold)" onclick="openModal()">Add API key</span>.';
-    return;
-  }
-  ii.innerHTML=`
-    <div class="i-row"><span class="i-ico">🗣️</span><div><span class="i-lbl">Languages</span><span class="i-val">${res.lang||'—'}</span></div></div>
-    <div class="i-row"><span class="i-ico">🕌</span><div><span class="i-lbl">Religion</span><span class="i-val">${res.rel||'—'}</span></div></div>
-    <div class="i-row"><span class="i-ico">🌤️</span><div><span class="i-lbl">Climate</span><span class="i-val">${res.cli||'—'}</span></div></div>
-    <div class="i-row"><span class="i-ico">👥</span><div><span class="i-lbl">Population</span><span class="i-val">${res.pop||'—'}</span></div></div>
-    <div class="i-row"><span class="i-ico">✨</span><div><span class="i-lbl">Fun fact</span><span class="i-val">${res.fact||'—'}</span></div></div>`;
-  ii.style.display='flex';
-}
-
-/* ── RENDER ── */
 function render(){
   const feed=document.getElementById('feed');
   feed.innerHTML='';
   const q=searchTerm.toLowerCase();
-  let count=0,lastCont='';
+  let count=0, lastCont='';
   COUNTRIES.forEach(d=>{
     const [continent,,name,capital]=d;
     if(activeContinent!=='All'&&continent!==activeContinent) return;
@@ -721,7 +440,6 @@ function render(){
   document.getElementById('resultCount').textContent=`${count} ${count===1?'country':'countries'} shown`;
 }
 
-/* ── FILTERS ── */
 function buildFilters(){
   const el=document.getElementById('contFilters');
   const conts=['All',...Object.keys(CONT_COLOR)];
@@ -736,21 +454,17 @@ function buildFilters(){
   });
 }
 
-document.getElementById('searchInput').addEventListener('input',e=>{
-  searchTerm=e.target.value; render();
-});
+document.getElementById('searchInput').addEventListener('input',e=>{ searchTerm=e.target.value; render() });
 
-/* ── CLOCKS ── */
 function updateClocks(){
   const t=getIST();
   document.querySelectorAll('[id^="ti_"]').forEach(el=>{ el.textContent=t });
 }
-updateClocks();
-setInterval(updateClocks,30000);
 
-/* ── INIT ── */
 buildFilters();
 render();
+updateClocks();
+setInterval(updateClocks,30000);
 </script>
 </body>
 </html>
